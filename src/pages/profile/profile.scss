@@ -14,11 +14,40 @@
     align-items: center;
   }
 
+  &__img-overlay-wrapper {
+    position: relative;
+    cursor: pointer;
+
+    &:hover .profile__img-overlay {
+      opacity: 1;
+    }
+  }
+
   &__img {
     width: 130px;
     height: 130px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  &__img-overlay {
+    opacity: 0;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    line-height: 14px;
+    text-align: center;
+    color: white;
+    padding: 30px;
+    transition: opacity 0.3s ease-in;
   }
 
   &__name {
@@ -37,6 +66,7 @@
     width: 510px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-bottom: 10px;
     border-bottom: 1px solid $border;
 
