@@ -24,9 +24,23 @@ a {
   }
 }
 
+button {
+  transition: opacity 0.3s ease-in;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+
 ul {
   list-style: none;
   padding: 0;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
 }
 
 input,
@@ -45,5 +59,5 @@ select {
   gap: 10px;
   position: fixed;
   bottom: 300px;
-  right: 20px;
+  left: 20px;
 }

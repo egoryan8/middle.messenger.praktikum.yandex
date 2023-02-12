@@ -5,22 +5,22 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.error-page__title {
-  font-size: 40px;
-  line-height: 100%;
-}
+  &__title {
+    font-size: 40px;
+    line-height: 100%;
+  }
 
-.error-page__message {
-  margin-top: 20px;
-  font-size: 20px;
-  line-height: 100%;
-}
+  &__message {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 100%;
+  }
 
-.error-page__link {
-  font-size: 11px;
-  line-height: 100%;
-  display: block;
-  margin-top: 70px;
+  &__link {
+    font-size: 11px;
+    line-height: 100%;
+    display: block;
+    margin-top: 70px;
+  }
 }

@@ -6,9 +6,9 @@
   font-size: 13px;
   line-height: 100%;
   transition: opacity 0.4s ease-in;
-}
 
-.button:hover {
-  cursor: pointer;
-  opacity: 0.7;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
