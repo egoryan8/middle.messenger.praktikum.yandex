@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/global.scss">
+  <title>Мессенджер</title>
+</head>
+<body>
+<!-- временная навигация по страницам для удобства проверки -->
+<nav class="navigation">
+  <a href="/profile">Профиль</a>
+  <a href="#/profile-edit">Редактирование профиля</a>
+  <a href="#/profile-password-edit">Изменение пароля</a>
+  <a href="#/signin">Вход</a>
+  <a href="#/signup">Регистрация</a>
+  <a href="#/">Чаты</a>
+  <a href="./pages/404/404.hbs">404</a>
+  <a href="./pages/500/500.hbs">500</a>
+</nav>
+<main id="root">
+  {{> button/button text="Test"}}
+</main>
+</body>
+</html>

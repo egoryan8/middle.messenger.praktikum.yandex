@@ -1,0 +1,27 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "мессенджер на ванильном TS с собственной реализацией фреймворка",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/index.hbs -p 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egoryan8/middle.messenger.praktikum.yandex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egoryan8/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/egoryan8/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "@parcel/transformer-sass": "^2.8.3",
+    "parcel": "^2.8.3",
+    "sass": "^1.58.0"
+  }
+}
