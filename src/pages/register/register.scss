@@ -1,0 +1,45 @@
+.register-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-page__wrapper {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 50px 30px 30px;
+}
+
+.register-page__title {
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.register-page__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  gap: 16px;
+}
+
+.register-page__button-wrapper {
+  width: 100%;
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.register-page__link {
+  text-align: center;
+  font-size: 11px;
+  line-height: 100%;
+}

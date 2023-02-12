@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="./index.scss">
+<div class="register-page">
+  <div class="register-page__wrapper">
+    <h1 class="register-page__title">Регистрация</h1>
+    <div class="register-page__input-wrapper">
+      {{> input-with-label/input-with-label label="Почта" type="email" placeholder="Логин" errorText="Неверный логин"}}
+      {{> input-with-label/input-with-label label="Логин" type="text" placeholder="Логин"}}
+      {{> input-with-label/input-with-label label="Имя" type="text" placeholder="Имя"}}
+      {{> input-with-label/input-with-label label="Фамилия" type="text" placeholder="Фамилия"}}
+      {{> input-with-label/input-with-label label="Телефон" type="text" placeholder="Телефон"}}
+      {{> input-with-label/input-with-label label="Пароль" type="password" placeholder="Пароль"}}
+      {{> input-with-label/input-with-label label="Пароль (ещё раз)" type="password" placeholder="Пароль (ещё раз)"}}
+    </div>
+    <div class="register-page__button-wrapper">
+      {{> button/button text="Зарегистрироваться"}}
+      <a class="register-page__link" href={{path}}>Войти</a>
+    </div>
+  </div>
+</div>
