@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="./index.scss">
+<div class="login-page">
+  <div class="login-page__wrapper">
+    <h1 class="login-page__title">Вход</h1>
+    <div class="login-page__input-wrapper">
+      {{> input-with-label/input-with-label label="Логин" type="text" placeholder="Логин" errorText="Неверный логин"}}
+      {{> input-with-label/input-with-label label="Пароль" type="password" placeholder="Пароль"}}
+    </div>
+    <div class="login-page__button-wrapper">
+      {{> button/button text="Авторизоваться"}}
+      <a class="login-page__link" href={{path}}>Нет аккаунта?</a>
+    </div>
+  </div>
+</div>
