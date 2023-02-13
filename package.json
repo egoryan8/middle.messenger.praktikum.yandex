@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.hbs",
-    "start": "parcel build ./src/index.hbs && node ./server.js"
+    "start": "parcel build ./src/index.hbs && node ./server.js",
+    "build": "parcel build ./src/index.hbs"
   },
   "repository": {
     "type": "git",
