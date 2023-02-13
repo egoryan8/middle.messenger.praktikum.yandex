@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="./index.scss">
+<div class="chats">
+  <div class="chats__list-wrapper">
+    <div class="chats__heading">
+      <a class="chats__link-to-profile" href="../profile/profile.hbs">
+        Профиль
+        <img class="arrow-right" src="../../../static/images/arror-right.svg" alt="стрелка вправо">
+      </a>
+      {{> search-input/search-input}}
+    </div>
+    <ul class="chats__list">
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="1"}}
+        {{> dialog-item/dialog-item name="Егор" message="Друзья, у меня для вас особенный выпуск новостей! Очень очень много новостей" time="Пт" messageCount="2"}}
+        {{> dialog-item/dialog-item name="Егор" message="Пример очень-очень длинного текста Пример очень-очень длинного текста Пример очень-очень длинного текста Пример очень-очень длинного текста" time="12 фев" messageCount="4"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="8"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="12"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2123"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2"}}
+        {{> dialog-item/dialog-item name="Егор" message="И Human Interface" time="22:28" messageCount="2"}}
+    </ul>
+  </div>
+  <div class="chats__current">
+    <div class="chats__current-heading">
+      <img class="chats__current-avatar" src="../../../static/images/mock-avatar.svg" alt="аватар пользователя">
+      <span class="chats__current-name">Егор</span>
+      <button class="chats__options-button"></button>
+    </div>
+    <div class="chats__dialog">
+      Пока что тут заглушка
+    </div>
+    <div class="chats__handling">
+      <button class="chats__clip-button"></button>
+      <input class="chats__input-message"  type="text" placeholder="Сообщение">
+      <button class="chats__send-button"></button>
+    </div>
+  </div>
+</div>
