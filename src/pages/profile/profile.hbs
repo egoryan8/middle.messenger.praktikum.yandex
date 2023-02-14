@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="./index.scss">
+<div class="profile__wrapper">
+  {{> sidebar/sidebar}}
+  <div class="profile">
+    <div class="profile__img-wrapper">
+      <div class="profile__img-overlay-wrapper">
+        <img class="profile__img" src="../../../static/images/mock-user-avatar.svg" alt="аватар пользователя">
+        <div class="profile__img-overlay">
+          Поменять аватар
+        </div>
+      </div>
+      <span class="profile__name">Иван</span>
+    </div>
+    <ul class="profile__fields">
+      <li class="profile__field">
+        <span class="profile__field__label">Почта</span>
+        <span class="profile__field__value">pochta@yandex.ru</span>
+      </li>
+      <li class="profile__field">
+        <span class="profile__field__label">Логин</span>
+        <span class="profile__field__value">ivanivanov</span>
+      </li>
+      <li class="profile__field">
+        <span class="profile__field__label">Имя</span>
+        <span class="profile__field__value">Иван</span>
+      </li>
+      <li class="profile__field">
+        <span class="profile__field__label">Фамилия</span>
+        <span class="profile__field__value">Иванов</span>
+      </li>
+      <li class="profile__field">
+        <span class="profile__field__label">Имя в чате</span>
+        <span class="profile__field__value">Иван</span>
+      </li>
+      <li class="profile__field">
+        <span class="profile__field__label">Телефон</span>
+        <span class="profile__field__value">+7 (909) 967 30 30</span>
+      </li>
+    </ul>
+    <div class="profile__links-wrapper">
+      <a href="../profile-edit/profile-edit.hbs" class="profile__link">Изменить данные</a>
+      <a href="../password-edit/password-edit.hbs" class="profile__link">Изменить пароль</a>
+      <button class="profile__sign-out-btn">Выйти</button>
+    </div>
+  </div>
+</div>

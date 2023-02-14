@@ -1,0 +1,28 @@
+.input-with-label {
+  width: 100%;
+
+  &__caption {
+    font-size: 9px;
+    line-height: 100%;
+    color: $gray;
+  }
+
+  &__input {
+    margin-top: 8px;
+    width: 100%;
+    padding: 0 0 7px 0;
+    outline: none;
+    font-size: 13px;
+    line-height: 100%;
+    border-bottom: 1px solid $primary;
+  }
+
+  &__error {
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 100%;
+    color: $red;
+  }
+}
