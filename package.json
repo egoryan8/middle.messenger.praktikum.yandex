@@ -4,8 +4,8 @@
   "description": "мессенджер на ванильном TS с собственной реализацией фреймворка",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index.hbs",
-    "start": "parcel build ./src/index.hbs && node ./server.js",
+    "dev": "parcel src/index.hbs --open",
+    "start": "parcel build ./src/index.hbs && node ./server.js ",
     "build": "parcel build ./src/index.hbs"
   },
   "repository": {
