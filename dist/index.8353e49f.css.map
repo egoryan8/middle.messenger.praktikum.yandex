@@ -1,1 +1,0 @@
-{"mappings":"AAGA;;;;AAEE","sources":["style.scss"],"sourcesContent":["$black: black;\n$teal: teal;\n\nbody {\n  background-color: $teal;\n  #root {\n    background-color: $black;\n\n  }\n}"],"names":[],"version":3,"file":"index.8353e49f.css.map","sourceRoot":"/__parcel_source_root/"}
