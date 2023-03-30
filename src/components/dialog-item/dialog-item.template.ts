@@ -1,3 +1,4 @@
+export default `
 <div class="dialog">
   <img class="dialog__avatar" src="../../../static/images/mock-avatar.svg" alt="аватар пользователя">
   <div class="dialog__message-wrapper">
@@ -9,3 +10,4 @@
     <div class="dialog__message-count">{{messageCount}}</div>
   </div>
 </div>
+`;
