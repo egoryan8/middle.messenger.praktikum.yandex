@@ -1,6 +1,6 @@
 export default `
 <div class="dialog">
-  <img class="dialog__avatar" src="../../../static/images/mock-avatar.svg" alt="аватар пользователя">
+  <div class="dialog__avatar"></div>
   <div class="dialog__message-wrapper">
     <h3 class="dialog__name">{{name}}</h3>
     <p class="dialog__message">{{message}}</p>

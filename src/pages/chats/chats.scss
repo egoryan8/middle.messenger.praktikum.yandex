@@ -52,6 +52,7 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
+    background-color: $gray-light;
   }
 
   &__current-name {
@@ -124,4 +125,31 @@
       transform: rotate(180deg) scale(0.9);
     }
   }
+}
+
+.search-input {
+  text-align: center;
+  background-color: $gray-light;
+  background-image: url('../../../static/images/search-icon.svg');
+  background-position: calc(50% - 35px);
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  line-height: 100%;
+
+  &:not(:placeholder-shown) {
+    background-image: none;
+  }
+}
+
+.arrow-right {
+  background-image: url("../../../static/images/arror-right.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 4px;
+  height: 8px;
+  background-position: center;
 }

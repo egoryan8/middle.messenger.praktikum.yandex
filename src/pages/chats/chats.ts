@@ -1,7 +1,7 @@
-import template from './sidebar.template';
 import Block from '../../utils/Block';
+import template from './chats.template';
 
-export class Sidebar extends Block {
+export class ChatsPage extends Block {
   render() {
     return template;
   }

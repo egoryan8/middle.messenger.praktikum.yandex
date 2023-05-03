@@ -1,4 +1,3 @@
-import '../../services/styles/styles.less';
 import template from './dialog-item.template';
 import Block from '../../utils/Block';
 

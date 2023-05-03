@@ -11,6 +11,8 @@
     width: 47px;
     height: 47px;
     border-radius: 50%;
+    flex-shrink: 0;
+    background-color: $gray-light;
   }
 
   &__message-wrapper {
