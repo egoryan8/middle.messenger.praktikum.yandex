@@ -2,7 +2,7 @@ import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../utils/regexps';
 
 export default `
 <div class="login-page">
-  <div class="login-page__wrapper">
+  <form class="login-page__wrapper">
     <h1 class="login-page__title">Вход</h1>
     <div class="login-page__input-wrapper">
        {{{ InputWithLabel classInput="input-with-label__input" labelText="Логин" errorText="Должно содержать от 3 до 8 символов" inputId="login" inputType="text" inputName="login" regexp="${REGEXP_LOGIN}" }}}
@@ -12,6 +12,6 @@ export default `
       {{{ Button text="Войти"}}}
       <a class="login-page__link" href="../register/index.html">Ещё не зарегистрированы?</a>
     </div>
-  </div>
+  </form>
 </div>
 `;

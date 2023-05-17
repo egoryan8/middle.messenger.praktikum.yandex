@@ -4,7 +4,7 @@ import {
 
 export default `
 <div class="register-page">
-  <div class="register-page__wrapper">
+  <form class="register-page__wrapper">
     <h1 class="register-page__title">Регистрация</h1>
     <div class="register-page__input-wrapper">
                         {{{ InputWithLabel classInput="input-with-label__input" labelText="Почта" errorText="Латиница, обязательно должен быть символ @" inputType="email" inputName="email" regexp="${REGEXP_EMAIL}" }}}
@@ -18,6 +18,6 @@ export default `
       {{{ Button text="Зарегистрироваться"}}}
       <a class="register-page__link" href="../login/index.html">Войти</a>
     </div>
-  </div>
+  </form>
 </div>
 `;
