@@ -15,14 +15,22 @@
     font-size: 13px;
     line-height: 100%;
     border-bottom: 1px solid $primary;
+    &_error {
+      color: red;
+    }
   }
 
   &__error {
-    display: block;
+    display: none;
     margin-top: 7px;
     font-weight: 400;
     font-size: 8px;
     line-height: 100%;
     color: $red;
+  }
+
+  &__input_error+.input-with-label__error {
+    display: block;
+    color: red;
   }
 }

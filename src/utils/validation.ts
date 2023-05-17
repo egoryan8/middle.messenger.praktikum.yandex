@@ -14,11 +14,9 @@ export const validateInput = (elementId: string, regexp: RegExp | string): IInpu
   const validationOK = reg.test(input.value);
 
   if (validationOK) {
-    input.classList.remove('input-error');
-    input.classList.add('input-normal');
+    input.classList.remove('input-with-label__input_error');
   } else {
-    input.classList.remove('input-normal');
-    input.classList.add('input-error');
+    input.classList.add('input-with-label__input_error');
   }
 
   return {

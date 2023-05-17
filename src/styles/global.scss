@@ -52,6 +52,10 @@ select {
   border: none;
 }
 
+.errorInput {
+  display: none;
+}
+
 //временный блок навигации
 .navigation {
   display: flex;

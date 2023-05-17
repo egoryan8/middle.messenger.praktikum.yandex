@@ -1,28 +1,50 @@
-import template from './input-with-label.template';
 import Block from '../../utils/Block';
 
-interface InputWithLabelProps {
-  label: string;
-  type: string;
-  placeholder: string;
-  name: string;
-  errorText?: string;
+export type TInputTypeField = 'email' | 'text' | 'tel' | 'password';
+
+interface IInputField {
+  labelText?: string;
+  inputId: string;
+  inputType: TInputTypeField;
+  inputName: string;
+  inputValue?: string;
+  inputPlaceholder?: string;
+  regexp: string;
+  classInput?: string;
+  errorText: string;
 }
 
-export class InputWithLabel extends Block<InputWithLabelProps> {
-  constructor({
-    label, type, placeholder, name, errorText,
-  }: InputWithLabelProps) {
+export class InputWithLabel extends Block<IInputField> {
+  constructor(props: IInputField) {
     super({
-      label,
-      type,
-      placeholder,
-      name,
-      errorText,
+      ...props,
     });
   }
 
   render() {
-    return template;
+    const {
+      labelText, inputId, inputType, inputName, inputValue, inputPlaceholder, regexp, classInput,
+    } = this.props;
+
+    // language=hbs
+    return `
+        <label class="input-with-label">
+            <span class="input-with-label__caption">{{labelText}}</span>
+            {{{ Input inputId="${inputId}"
+                      inputType="${inputType}"
+                      inputName="${inputName}"
+                      ${inputValue !== undefined ? `inputValue="${inputValue}"` : ''}
+                      ${inputPlaceholder !== undefined ? `inputPlaceholder="${inputPlaceholder}"` : ''}
+                      regexp="${regexp}"
+                      class="${classInput}"
+                      
+            }}}
+            <div class="input-with-label__error">
+           {{errorText}}
+            </div>
+        </label>  
+
+
+    `;
   }
 }
