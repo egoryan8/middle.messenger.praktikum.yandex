@@ -4,9 +4,11 @@
   "description": "мессенджер на ванильном TS с собственной реализацией фреймворка",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index.hbs --open",
-    "start": "parcel build ./src/index.hbs && node ./server.js ",
-    "build": "parcel build ./src/index.hbs"
+    "dev": "parcel src/index.html --open",
+    "start": "parcel build src/index.html && node server.ts ",
+    "build": "parcel build src/index.html",
+    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+    "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix"
   },
   "repository": {
     "type": "git",
@@ -21,11 +23,21 @@
   "homepage": "https://github.com/egoryan8/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-sass": "2.8.3",
+    "@typescript-eslint/eslint-plugin": "5.56.0",
+    "@typescript-eslint/parser": "5.56.0",
+    "eslint": "8.36.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "parcel": "2.8.3",
-    "sass": "1.58.0"
+    "sass": "1.58.0",
+    "stylelint": "15.3.0"
   },
   "dependencies": {
-    "express": "4.18.2"
+    "handlebars": "^4.7.7",
+    "express": "4.18.2",
+    "nanoid": "4.0.2",
+    "typescript": "5.0.2"
   }
 }

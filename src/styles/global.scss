@@ -52,6 +52,10 @@ select {
   border: none;
 }
 
+.errorInput {
+  display: none;
+}
+
 //временный блок навигации
 .navigation {
   display: flex;
@@ -61,3 +65,4 @@ select {
   bottom: 300px;
   left: 20px;
 }
+
