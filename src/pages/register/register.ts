@@ -8,8 +8,6 @@ import {
 export class RegisterPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      // onClick: () => this.validate(),
-      // goNext1:
       events: {
         submit: (e: Event) => this.goNext(e),
       },
