@@ -8,12 +8,11 @@
     border-right: 1px solid $border;
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
     overflow-y: scroll;
   }
 
   &__heading {
-    padding: 20px 0;
+    padding: 20px 10px;
     background-color: white;
     display: flex;
     flex-direction: column;
