@@ -6,7 +6,7 @@ import { renderDom } from '../../utils/renderDom';
 
 registerComponent(Sidebar, 'Sidebar');
 
-const profiePage = new Profile({
+export const profiePage = new Profile({
   onClick: () => {},
 });
 

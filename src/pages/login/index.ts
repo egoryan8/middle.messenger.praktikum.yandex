@@ -11,6 +11,6 @@ registerComponent(Button, 'Button');
 registerComponent(Input, 'Input');
 registerComponent(InputWithLabel, 'InputWithLabel');
 
-const loginPage = new LoginPage();
+export const loginPage = new LoginPage();
 
 renderDom('#app', loginPage);

@@ -7,6 +7,6 @@ import './index.scss';
 
 registerComponent(DialogItem, 'DialogItem');
 
-const chatsPage = new ChatsPage();
+export const chatsPage = new ChatsPage();
 
 renderDom('#app', chatsPage);
