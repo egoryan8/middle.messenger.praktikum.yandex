@@ -4,6 +4,7 @@ import { validateInputs } from '../../utils/validation';
 import {
   REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_PASSWORD, REGEXP_PHONE,
 } from '../../utils/regexps';
+import './index.scss';
 
 export class RegisterPage extends Block<{ onClick: Function }> {
   constructor() {

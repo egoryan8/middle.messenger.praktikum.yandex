@@ -2,6 +2,7 @@ import Block from '../../utils/Block';
 import template from './login.template';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../utils/regexps';
 import { validateInputs } from '../../utils/validation';
+import './index.scss';
 
 export class LoginPage extends Block<{ onClick: Function }> {
   constructor() {
