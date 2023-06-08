@@ -5,17 +5,37 @@ import {
   REGEXP_EMAIL, REGEXP_LOGIN, REGEXP_NAME, REGEXP_PASSWORD, REGEXP_PHONE,
 } from '../../utils/regexps';
 import './index.scss';
+import AuthController from '../../controllers/AuthController';
+import { SignUpData } from '../../api/AuthApi';
+import Router from '../../utils/Router';
 
 export class RegisterPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      // onClick: () => this.validate(),
-      // goNext1:
+      onClick: () => this.onSignUp(),
       events: {
         submit: (e: Event) => this.goNext(e),
       },
     });
   }
+
+  onSignUp = () => {
+    const data = validateInputs(
+      { elementId: 'email', regexp: REGEXP_EMAIL },
+      { elementId: 'login', regexp: REGEXP_LOGIN },
+      { elementId: 'first_name', regexp: REGEXP_NAME },
+      { elementId: 'second_name', regexp: REGEXP_NAME },
+      { elementId: 'phone', regexp: REGEXP_PHONE },
+      { elementId: 'password', regexp: REGEXP_PASSWORD },
+    );
+
+    // Если все поля заполнены и провалидированы - отправляем запрос
+    if (data) {
+      AuthController.signUp(data as SignUpData)
+        .then(() => new Router().go('/messages'))
+        .catch((error) => alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`));
+    }
+  };
 
   goNext = (e: Event) => {
     console.log('NEXT');

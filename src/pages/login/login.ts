@@ -2,11 +2,12 @@ import Block from '../../utils/Block';
 import template from './login.template';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../utils/regexps';
 import { validateInputs } from '../../utils/validation';
-import './index.scss';
 import AuthController from '../../controllers/AuthController';
 import Router from '../../utils/Router';
 import ChatController from '../../controllers/ChatController';
 import { SignInData } from '../../api/AuthApi';
+
+import './index.scss';
 
 export class LoginPage extends Block<{ onClick: Function }> {
   constructor() {
@@ -22,7 +23,7 @@ export class LoginPage extends Block<{ onClick: Function }> {
   componentDidMount() {
     AuthController.fetchUser().then(() => {
       const router = new Router();
-      router.go('/messages');
+      router.go('/messenger');
     });
   }
 
