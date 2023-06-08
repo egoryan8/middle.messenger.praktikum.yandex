@@ -15,7 +15,7 @@ type ButtonType = Omit<ButtonProps, 'onClick'> & {
 
 export class Button extends Block<ButtonType> {
   constructor({
-    text, type, onClick,
+    text, type = 'button', onClick,
   }: ButtonProps) {
     super({
       text,

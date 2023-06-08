@@ -39,6 +39,9 @@
   }
 
   &__link {
+    background-color: transparent;
+    border: none;
+    color: $primary;
     text-align: center;
     font-size: 11px;
     line-height: 100%;

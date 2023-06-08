@@ -5,7 +5,7 @@ import './index.scss';
 export const NotFoundPage = new ErrorPage({
   errorCode: '404',
   message: 'Не туда попали',
-  backLink: '/#',
+  backLink: '/messenger',
 });
 
 renderDom('#app', NotFoundPage);

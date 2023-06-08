@@ -16,7 +16,7 @@ export default `
     </div>
     <div class="register-page__button-wrapper">
       {{{ Button text="Зарегистрироваться"}}}
-      <a class="register-page__link" href="../login/index.html">Войти</a>
+      <a class="register-page__link" href="/">Войти</a>
     </div>
   </form>
 </div>

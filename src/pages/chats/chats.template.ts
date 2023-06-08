@@ -2,7 +2,7 @@ export default `
 <div class="chats">
   <div class="chats__list-wrapper">
     <div class="chats__heading">
-      <a class="chats__link-to-profile" href="../profile/profile.hbs">
+      <a class="chats__link-to-profile" href="/settings">
         Профиль
         <div class="arrow-right"></div>
       </a>

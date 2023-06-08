@@ -5,7 +5,7 @@ import './index.scss';
 export const ServerErrorPage = new ErrorPage({
   errorCode: '500',
   message: 'Мы уже фиксим',
-  backLink: '/#',
+  backLink: '/messenger',
 });
 
 renderDom('#app', ServerErrorPage);

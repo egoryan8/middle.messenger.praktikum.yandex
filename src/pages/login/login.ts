@@ -7,13 +7,18 @@ import './index.scss';
 export class LoginPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      // onClick: () => this.validate(),
+      onClick: () => this.onSignIn(),
       // goNext:
       events: {
         submit: (e: Event) => this.goNext(e),
       },
     });
   }
+
+  onSignIn = (e) => {
+    e.preventDefault();
+    console.log('Login');
+  };
 
   goNext = (e: Event) => {
     console.log('NEXT');
