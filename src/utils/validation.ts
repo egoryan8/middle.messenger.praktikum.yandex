@@ -30,6 +30,7 @@ export const validateInputs = (...items: IValidationInput[]) => {
 
   if (inputsValidationResults.every((item) => item.validationOK)) {
     // eslint-disable-next-line no-console
-    console.log(inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {}));
+
+    return inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {});
   }
 };
