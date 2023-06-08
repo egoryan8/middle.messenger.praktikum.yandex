@@ -1,7 +1,7 @@
 import template from './dialog-item.template';
 import Block from '../../utils/Block';
 
-interface DialogItemProps {
+export interface DialogItemProps {
   name: string;
   message: string;
   time: string;
