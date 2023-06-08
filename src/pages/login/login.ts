@@ -3,15 +3,24 @@ import template from './login.template';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../utils/regexps';
 import { validateInputs } from '../../utils/validation';
 import './index.scss';
+import AuthController from '../../controllers/AuthController';
+import Router from '../../utils/Router';
 
 export class LoginPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      onClick: () => this.onSignIn(),
+      onClick: (e: Event) => this.onSignIn(e),
       // goNext:
       events: {
         submit: (e: Event) => this.goNext(e),
       },
+    });
+  }
+
+  componentDidMount() {
+    AuthController.fetchUser().then(() => {
+      const router = new Router();
+      router.go('/messages');
     });
   }
 
