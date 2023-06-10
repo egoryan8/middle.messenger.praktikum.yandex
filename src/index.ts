@@ -4,8 +4,8 @@ import { Button } from './components/button';
 import { Input } from './components/input';
 import { LoginPage } from './pages/login/login';
 import { RegisterPage } from './pages/register/register';
-import { Profile } from './pages/profile/profile';
-import { ChatsPage } from './pages/chats/chats';
+import ProfilePage from './pages/profile';
+import ChatsPage from './pages/chats';
 import { DialogItem } from './components/dialog-item';
 import { InputWithLabel } from './components/input-with-label';
 import { ServerErrorPage } from './pages/500';
@@ -20,7 +20,7 @@ const router = new Router();
 
 router.use('/', LoginPage)
   .use('/sign-up', RegisterPage)
-  .use('/settings', Profile)
+  .use('/settings', ProfilePage)
   .use('/messenger', ChatsPage)
   .use('/error500', ServerErrorPage)
   .use('/error404', NotFoundPage);

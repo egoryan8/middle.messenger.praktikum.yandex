@@ -19,7 +19,7 @@ export class EventBus {
 
   emit(evt: string, ...args) {
     if (!this.listeners[evt]) {
-      throw new Error(`Нет такого события (${evt})`);
+      return;
     }
 
     this.listeners[evt].forEach((listener) => {

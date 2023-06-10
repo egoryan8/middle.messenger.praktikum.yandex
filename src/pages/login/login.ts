@@ -36,7 +36,7 @@ export class LoginPage extends Block<{ onClick: Function }> {
           console.log('Авторизация выполнена успешно!');
           ChatController.getChats();
           const router = new Router();
-          router.go('/messages');
+          router.go('/messenger');
         })
         .catch((error) => alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`));
     }
