@@ -13,8 +13,12 @@ import { NotFoundPage } from './pages/404';
 import { WS } from './utils/WebSockets';
 import { SendMessageButton } from './components/send-message-button';
 import { Message } from './components/message';
+import { InputProfile } from './components/input-profile/input-profile';
+import { Sidebar } from './components/sidebar';
 
 registerComponent(Button, 'Button');
+registerComponent(Sidebar, 'Sidebar');
+registerComponent(InputProfile, 'InputProfile');
 registerComponent(SendMessageButton, 'SendMessageButton');
 registerComponent(Message, 'Message');
 registerComponent(Input, 'Input');

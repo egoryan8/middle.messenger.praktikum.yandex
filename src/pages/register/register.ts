@@ -32,7 +32,7 @@ export class RegisterPage extends Block<{ onClick: Function }> {
     // Если все поля заполнены и провалидированы - отправляем запрос
     if (data) {
       AuthController.signUp(data as SignUpData)
-        .then(() => new Router().go('/messages'))
+        .then(() => new Router().go('/messenger'))
         .catch((error) => alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`));
     }
   };

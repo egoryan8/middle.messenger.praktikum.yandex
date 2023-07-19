@@ -27,7 +27,7 @@
 
   &__img {
     width: 130px;
-    height: 130px;
+    min-height: 130px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -84,12 +84,21 @@
   &__field__label {
     font-size: 13px;
     line-height: 100%;
+    white-space: nowrap;
   }
 
   &__field__value {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 100%;
     color: $gray;
+    width: inherit;
+    text-align: end;
+    margin-left: 10px;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__links-wrapper {

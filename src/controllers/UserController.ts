@@ -16,6 +16,10 @@ class UserController {
     await this.api.changePassword(data);
   }
 
+  async getUserByLogin(login: string) {
+    return this.api.getUserByLogin(login);
+  }
+
   async changeAvatar(data: FormData) {
     const userData = await this.api.changeAvatarData(data);
     store.set('currentUser', userData);

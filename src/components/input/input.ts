@@ -22,6 +22,7 @@ interface IInput extends IInputProps {
 
 export class Input extends Block<IInput> {
   constructor(props: IInputProps) {
+    const { disabled = false, ...otherProps } = props;
     super({
       ...props,
       events: {
@@ -29,6 +30,7 @@ export class Input extends Block<IInput> {
         blur: () => validateInput(this.props.inputId, this.props.regexp),
       },
     });
+    this.props.disabled = disabled;
   }
 
   render() {
@@ -40,6 +42,6 @@ export class Input extends Block<IInput> {
              ${this.props.inputValue !== undefined && 'value={{inputValue}}'}
              ${this.props.inputPlaceholder !== undefined && 'placeholder={{inputPlaceholder}}'}
              type={{inputType}} 
-             autocomplete="false"/>`;
+            />`;
   }
 }
