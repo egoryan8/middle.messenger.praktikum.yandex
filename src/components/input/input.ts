@@ -33,12 +33,13 @@ export class Input extends Block<IInput> {
 
   render() {
     return `
-      <input id={{inputId}}
+      <input 
+             id={{inputId}}
+             name={{inputName}}
+             class={{class}}
              ${this.props.inputValue !== undefined && 'value={{inputValue}}'}
-
              ${this.props.inputPlaceholder !== undefined && 'placeholder={{inputPlaceholder}}'}
-
-             type={{inputType}} name={{inputName}}
-             class={{class}} autocomplete="false"/>`;
+             type={{inputType}} 
+             autocomplete="false"/>`;
   }
 }

@@ -10,13 +10,19 @@ import { DialogItem } from './components/dialog-item';
 import { InputWithLabel } from './components/input-with-label';
 import { ServerErrorPage } from './pages/500';
 import { NotFoundPage } from './pages/404';
+import { WS } from './utils/WebSockets';
+import { SendMessageButton } from './components/send-message-button';
+import { Message } from './components/message';
 
 registerComponent(Button, 'Button');
+registerComponent(SendMessageButton, 'SendMessageButton');
+registerComponent(Message, 'Message');
 registerComponent(Input, 'Input');
 registerComponent(DialogItem, 'DialogItem');
 registerComponent(InputWithLabel, 'InputWithLabel');
 
 const router = new Router();
+export const ws = new WS();
 
 router.use('/', LoginPage)
   .use('/sign-up', RegisterPage)

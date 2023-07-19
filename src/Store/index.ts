@@ -1,1 +1,3 @@
-export { IUserData, store, withStore } from './Store';
+export {
+  IUserData, store, withStore, IChatData,
+} from './Store';
