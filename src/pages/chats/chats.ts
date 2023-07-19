@@ -155,16 +155,20 @@ export class ChatsPage extends Block<ChatsPageProps> {
   getChatTitle() {
     const chatId = store.getState()?.currentChatId;
     if (chatId) {
-      const chat = store.getState()?.chatList.find((item: IChatData) => String(item.id) === chatId);
+      const chat = store.getState()
+        ?.chatList
+        .find((item: IChatData) => String(item.id) === chatId);
       if (chat) {
         return chat.title;
       }
-    } else return undefined;
+    } else {
+      return undefined;
+    }
   }
 
   render() {
     const currentChatTitle = this.getChatTitle();
-    const miniAvatar = !this.props.miniAvatar ? undefined : `"${this.props.miniAvatar}"`;
+    const miniAvatar = this.props.miniAvatar || 'https://cdn1.iconfinder.com/data/icons/ui-5/502/speech-1024.png';
     // language=hbs
 
     return `
@@ -176,11 +180,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
                         <div class="arrow-right"></div>
                     </a>
                     <div class="button-chat-container">
-                        {{{ Button className="profile__btn" text="Создать чат" onClick=onCreateChat }}}
-                        ${currentChatTitle ? `
-                        {{{ Button buttonId="button-add-user" className="profile__btn" text="Пригласить" onClick=onAddUser }}}
-                        {{{ Button buttonId="button-delete-user" className="profile__btn" text="Исключить" onClick=onDeleteUser }}}
-                      ` : ''}
+                        {{{ Button className="profile__btn" text="+ Создать чат" onClick=onCreateChat }}}
                     </div>
                     <input class="search-input" type="text" placeholder="Поиск">
                 </div>
@@ -190,17 +190,22 @@ export class ChatsPage extends Block<ChatsPageProps> {
             </div>
             <div class="chats__current">
                 <div class="chats__current-heading">
-                    <div class="chats__current-avatar"></div>
-                    <span class="chats__current-name">${currentChatTitle || 'Выберите чат'}</span>
+                    ${currentChatTitle ? `<img class="chats__current-avatar" src='${miniAvatar}' alt="Аватар чата"/>
+                                <span class="chats__current-name">${currentChatTitle || 'Выберите чат'}</span>
+                    ` : ''}
                     <div class="chats__top-buttons">
+                        ${currentChatTitle ? `
+                        {{{ Button buttonId="button-add-user" className="profile__btn" text="Пригласить" onClick=onAddUser }}}
+                        {{{ Button buttonId="button-delete-user" className="profile__btn" text="Исключить" onClick=onDeleteUser }}}
+                      ` : ''}
                         ${currentChatTitle ? '{{{ Button className="button_color_red" text="Удалить чат" onClick=onDeleteChat }}}' : ''}
-                        {{{ Button className="button_color_red" text="Выход" onClick=onLogout}}}
+                        {{{ Button className="button_color_red" text="Выйти" onClick=onLogout}}}
                     </div>
                 </div>
                 <div class="chats__dialog">
-                    ${this.messageListToJSX()}
+                    ${currentChatTitle ? this.messageListToJSX() : '<div class="chats__pick-dialog"><span class="chats__pick-dialog-text">Выберите чат<span></span></div>'}
                 </div>
-                <div class="chats__handling">
+                ${currentChatTitle ? `<div class="chats__handling">
                     <button class="chats__clip-button"></button>
                     {{{Input
                             class="chats__input-message"
@@ -210,7 +215,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
                             inputName="message"
                     }}}
                     {{{SendMessageButton onClick=onSendMessage }}}
-                </div>
+                </div>` : ''}
             </div>
         </main>;
     `;

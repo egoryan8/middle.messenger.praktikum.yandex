@@ -49,6 +49,7 @@
   }
 
   &__current-avatar {
+    object-fit: cover;
     width: 34px;
     height: 34px;
     border-radius: 50%;
@@ -202,5 +203,31 @@
   margin-bottom: 10px;
 }
 
+.chats__pick-dialog {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 100px 0;
+  height: 100%;
+  width: 100%;
+}
 
+.chats__pick-dialog-text {
+  position: relative;
+  font-size: 2.5rem;
+
+  &::after {
+    content: '\2936';
+    display: block;
+    position: absolute;
+    left: 30%;
+    font-size: 92px;
+    margin-top: 10px;
+    color: $primary;
+  }
+}
+
+.profile__btn {
+  padding: 10px;
+}
 
