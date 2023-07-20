@@ -15,7 +15,7 @@ export default `
                         {{{ InputWithLabel classInput="input-with-label__input" labelText="Пароль" errorText="Должно содержать от 8 до 40 символов + Заглавный символ" inputId="password" inputType="password" inputName="password" regexp="${REGEXP_PASSWORD}" }}}
     </div>
     <div class="register-page__button-wrapper">
-      {{{ Button text="Зарегистрироваться" onClick=onClick}}}
+      {{{ Button type="submit" text="Зарегистрироваться" onClick=onClick}}}
       <a class="register-page__link" href="/">Войти</a>
     </div>  
   </form>

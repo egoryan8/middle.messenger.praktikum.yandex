@@ -9,6 +9,9 @@ import { validateInputs } from '../../utils/validation';
 import { REGEXP_MESSAGE } from '../../utils/regexps';
 import { scrollToLastMessage } from '../../utils/scrollToLastMessage';
 import { ws } from '../../index';
+import { getRandomColor } from '../../utils/getRandomColor';
+
+const arrayOfRandomColors = [...Array(100)].map(getRandomColor);
 
 interface ChatsPageProps {
   chatList?: IChatData[];
@@ -36,7 +39,8 @@ export class ChatsPage extends Block<ChatsPageProps> {
     const router = new Router();
     ChatController.getChats()
       .then(() => {
-        AuthController.fetchUser(); // Подтягиваем информацию о юзере (нам нужен userID для работы с websocket);
+        AuthController.fetchUser();
+        store.set('isChatLoading', false);
       })
       .catch(() => {
         router.go('/');
@@ -116,7 +120,11 @@ export class ChatsPage extends Block<ChatsPageProps> {
   }
 
   messageListToJSX() {
-    if (!this.props.messageList || this.props.messageList.length <= 0) {
+    if (this.props.messageList.length === 0) {
+      return '<div class="messages-loader-wrapper">Здесь пока ничего нет...</div>';
+    }
+
+    if (store.getState().isChatLoading) {
       return '<div class="messages-loader-wrapper"><span class="messages-loader"></span></div>';
     }
 
@@ -130,8 +138,9 @@ export class ChatsPage extends Block<ChatsPageProps> {
     }
 
     return this.props.chatList
-      .map((chat: IChatData) => {
+      .map((chat: IChatData, index: number) => {
         const lastMessage = !chat.last_message?.content ? undefined : `"${chat.last_message?.content}"`;
+        const lastUsername = !chat.last_message?.user?.display_name ? undefined : `"${chat.last_message?.user?.display_name}"`;
         const unreadMessagesCount = !chat.unread_count ? undefined : `"${chat.unread_count}"`;
 
         let lastMessageTime;
@@ -146,6 +155,8 @@ export class ChatsPage extends Block<ChatsPageProps> {
            message=${lastMessage}
            time=${lastMessageTime}
            messageCount=${unreadMessagesCount}
+           lastUserName=${lastUsername}
+           color="${arrayOfRandomColors[index]}"
            }}}
         `;
       })
@@ -183,17 +194,31 @@ export class ChatsPage extends Block<ChatsPageProps> {
   render() {
     const currentChatTitle = this.getChatTitle();
     const isAdmin = this.getIsAdmin();
+    const { user } = this.props;
+    const avatar = store?.getState()?.currentUser?.avatar;
+    const name = store?.getState()?.currentUser?.first_name;
+    const hostResources = 'https://ya-praktikum.tech/api/v2/resources/';
+    const userAvatar = avatar ? `${hostResources}${avatar}` : 'https://racksmetal.ru/assets/images/products/1147/noimg-2-1.jpg';
+    // const userAvatar = store.getState().currentUser.avatar();
     const miniAvatar = this.props.miniAvatar || 'https://cdn1.iconfinder.com/data/icons/ui-5/502/speech-1024.png';
     // language=hbs
+
+    if (!user?.id) {
+      return '<div class="chats-loader-wrapper"><span class="chats-loader"></span></div>';
+    }
 
     return `
         <main class='chats'>
             <div class="chats__list-wrapper">
                 <div class="chats__heading">
+                    <div class="chats__heading-wrapper">
+                    <img src=${userAvatar} class="chats__heading-avatar" alt="фото пользователя">
+                        <div class="chats__heading-name">${name}</div>
                     <a class="chats__link-to-profile" href="/settings">
                         Профиль
                         <div class="arrow-right"></div>
                     </a>
+                    </div>
                     <div class="button-chat-container">
                         {{{ Button className="profile__btn" text="+ Создать чат" onClick=onCreateChat }}}
                     </div>

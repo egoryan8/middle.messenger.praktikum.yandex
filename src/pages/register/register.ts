@@ -12,11 +12,15 @@ import Router from '../../utils/Router';
 export class RegisterPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      onClick: () => this.onSignUp(),
+      onClick: (e: Event) => this.onSignUp(e),
+      events: {
+        submit: (e: Event) => this.onSignUp(e),
+      },
     });
   }
 
-  onSignUp = () => {
+  onSignUp = (e: Event) => {
+    e.preventDefault();
     const data = validateInputs(
       { elementId: 'email', regexp: REGEXP_EMAIL },
       { elementId: 'login', regexp: REGEXP_LOGIN },
@@ -31,38 +35,6 @@ export class RegisterPage extends Block<{ onClick: Function }> {
       AuthController.signUp(data as SignUpData)
         .then(() => new Router().go('/messenger'))
         .catch((error) => alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`));
-    }
-  };
-
-  goNext = (e: Event) => {
-    console.log('NEXT');
-    e.preventDefault();
-    console.log(e);
-
-    const values = Object.fromEntries(new FormData(e.target));
-    console.log(values);
-
-    const validations = {
-      login: (value) => value.length >= 3 && value.length <= 20,
-      password: (value) => value.length >= 3 && value.length <= 40,
-      first_name: (value) => /^[A-Z]{1}|[А-Я]{1}$/.test(value[0]),
-      second_name: (value) => /^[A-Z]{1}|[А-Я]{1}$/.test(value[0]),
-      email: (value) => value.length >= 1 && value.includes('@'),
-      phone: (value) => /^\d{11}$/.test(value),
-
-    };
-    let isAllValid = true;
-    for (const name in values) {
-      if (!validations[name](values[name])) {
-        const input = e.target.querySelector(`[name="${name}"]`);
-        input.style.outline = '2px solid red';
-        input.classList.add('error');
-        isAllValid = false;
-      }
-    }
-
-    if (isAllValid) {
-      location.replace('/pages/chats/index.html');
     }
   };
 

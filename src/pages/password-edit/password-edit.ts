@@ -33,7 +33,6 @@ export class PasswordEdit extends Block<IPasswordEdit> {
       { elementId: 'newPassword', regexp: REGEXP_PASSWORD },
       { elementId: 'oldPassword', regexp: REGEXP_PASSWORD },
     );
-    console.log(data);
     if (data) {
       UserController.changePassword(data as ChangePasswordData)
         .then(() => alert('Пароль успешно изменен!'))

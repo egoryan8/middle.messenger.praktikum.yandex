@@ -15,12 +15,17 @@
     border: none;
   }
 
-  &__avatar {
+  &__avatar-mock {
     width: 47px;
     height: 47px;
     border-radius: 50%;
     flex-shrink: 0;
-    background-color: $gray-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    text-shadow: 1px 1px 2px $primary;
   }
 
   &__message-wrapper {
@@ -30,11 +35,17 @@
 
   &__name {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
   }
 
+ &__lastUsername {
+   margin-top: 5px;
+   font-weight: 500;
+   font-size: 13px;
+ }
+
   &__message {
-    margin-top: 4px;
+    margin-top: 2px;
     font-size: 12px;
     line-height: 125%;
     color: $gray;

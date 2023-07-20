@@ -25,7 +25,6 @@ export class ProfileAvatar extends Block<IAvatar> {
             formData.append('avatar', file);
             UserController.changeAvatar(formData)
               .then(() => {
-                console.log('Success');
                 this.props.isLoading = false;
               });
           } catch (err: any) {
