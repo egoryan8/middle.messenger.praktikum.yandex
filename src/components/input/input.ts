@@ -26,7 +26,7 @@ export class Input extends Block<IInput> {
     super({
       ...props,
       events: {
-        input: () => validateInput(this.props.inputId, this.props.regexp),
+        focus: () => validateInput(this.props.inputId, this.props.regexp),
         blur: () => validateInput(this.props.inputId, this.props.regexp),
       },
     });
