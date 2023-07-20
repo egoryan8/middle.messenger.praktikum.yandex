@@ -88,7 +88,7 @@ export class Profile extends Block<IProfileProps> {
             {{{ Sidebar }}}
             <div class="profile">
                 <div class="profile__img-wrapper">
-                    {{{ProfileAvatar avatar=${avatar}  }}}
+                    {{{ProfileAvatar avatar=${avatar} isLoading=${false}  }}}
                     <span class="profile__name">${this.props.first_name}</span>
                 </div>
                 <ul class="profile__fields">

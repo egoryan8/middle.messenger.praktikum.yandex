@@ -3,6 +3,7 @@ import UserController from '../../controllers/UserController';
 
 interface IAvatarProps {
   avatar: string;
+  isLoading: boolean;
 }
 
 interface IAvatar extends IAvatarProps {
@@ -18,12 +19,18 @@ export class ProfileAvatar extends Block<IAvatar> {
       events: {
         change: (e: any) => {
           try {
+            this.props.isLoading = true;
             const file = e.target.files[0];
             const formData = new FormData();
             formData.append('avatar', file);
-            UserController.changeAvatar(formData);
+            UserController.changeAvatar(formData)
+              .then(() => {
+                console.log('Success');
+                this.props.isLoading = false;
+              });
           } catch (err: any) {
             alert(`Произошла ошибка при смене автара! ${err.reason}`);
+            this.props.isLoading = false;
           }
         },
       },
@@ -36,6 +43,14 @@ export class ProfileAvatar extends Block<IAvatar> {
       avatar,
     } = this.props;
     const avatarURL = avatar ? `${hostResources}${avatar}` : 'https://racksmetal.ru/assets/images/products/1147/noimg-2-1.jpg';
+
+    if (this.props.isLoading) {
+      return `
+      <div class="profile__img-overlay-wrapper">
+        <span class="profile__img avatar-loader"></span>
+      </div>
+      `;
+    }
 
     return `
     <div class="profile__img-overlay-wrapper">
