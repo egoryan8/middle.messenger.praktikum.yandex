@@ -1,12 +1,11 @@
-import { renderDom } from '../../utils/renderDom';
-import { registerComponent } from '../../utils/registerComponent';
-import { DialogItem } from '../../components/dialog-item';
+import { withStore } from '../../Store';
+// eslint-disable-next-line import/no-cycle
 import { ChatsPage } from './chats';
 
-import './index.scss';
+const withChats = withStore((state) => ({
+  chatList: state.chatList || [],
+  currentChatId: state.currentChatId,
+  messageList: state.messageList || [],
+}));
 
-registerComponent(DialogItem, 'DialogItem');
-
-const chatsPage = new ChatsPage();
-
-renderDom('#app', chatsPage);
+export default withChats(ChatsPage);

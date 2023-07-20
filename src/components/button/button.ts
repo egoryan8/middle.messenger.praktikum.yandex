@@ -3,6 +3,7 @@ import Block from '../../utils/Block';
 
 interface ButtonProps {
   text: string;
+  className: string;
   type?: string;
   onClick: () => void;
 }
@@ -15,11 +16,12 @@ type ButtonType = Omit<ButtonProps, 'onClick'> & {
 
 export class Button extends Block<ButtonType> {
   constructor({
-    text, type, onClick,
+    text, type = 'button', onClick, className,
   }: ButtonProps) {
     super({
       text,
       type,
+      className,
       events: {
         click: onClick,
       },

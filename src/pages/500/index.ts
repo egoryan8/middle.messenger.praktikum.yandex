@@ -2,10 +2,10 @@ import { renderDom } from '../../utils/renderDom';
 import { ErrorPage } from '../../components/error-page';
 import './index.scss';
 
-const ServerErrorPage = new ErrorPage({
+export const ServerErrorPage = new ErrorPage({
   errorCode: '500',
   message: 'Мы уже фиксим',
-  backLink: '/#',
+  backLink: '/messenger',
 });
 
 renderDom('#app', ServerErrorPage);

@@ -27,9 +27,9 @@ export const validateInput = (elementId: string, regexp: RegExp | string): IInpu
 };
 export const validateInputs = (...items: IValidationInput[]) => {
   const inputsValidationResults = items.map((item) => validateInput(item.elementId, item.regexp));
-
   if (inputsValidationResults.every((item) => item.validationOK)) {
     // eslint-disable-next-line no-console
-    console.log(inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {}));
+
+    return inputsValidationResults.reduce((acc, cur) => Object.assign(acc, { [cur.inputName]: cur.inputValue }), {});
   }
 };

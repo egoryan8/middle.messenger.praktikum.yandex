@@ -1,9 +1,17 @@
 .dialog {
+  border-radius: 10px;
   display: flex;
-  padding: 12px 0;
+  padding: 12px 10px;
   border-top: 1px solid $border;
 
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
   &:first-of-type {
+    margin-top: 5px;
     border: none;
   }
 
