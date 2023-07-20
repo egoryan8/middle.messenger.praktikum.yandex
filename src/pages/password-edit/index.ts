@@ -1,14 +1,6 @@
-import { renderDom } from '../../utils/renderDom';
-import { registerComponent } from '../../utils/registerComponent';
-import { Button } from '../../components/button';
+import { withStore } from '../../Store';
 import { PasswordEdit } from './password-edit';
 
-import './index.scss';
-import { Sidebar } from '../../components/sidebar';
+const withUser = withStore((state) => ({ ...state.currentUser }));
 
-registerComponent(Button, 'Button');
-registerComponent(Sidebar, 'Sidebar');
-
-const passwordEdit = new PasswordEdit();
-
-renderDom('#app', passwordEdit);
+export default withUser(PasswordEdit);

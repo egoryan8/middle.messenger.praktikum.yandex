@@ -56,13 +56,14 @@ select {
   display: none;
 }
 
-//временный блок навигации
-.navigation {
+.loader-wrapper {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: fixed;
-  bottom: 300px;
-  left: 20px;
+  justify-content: center;
+  align-items: center;
 }
+
+
+
 

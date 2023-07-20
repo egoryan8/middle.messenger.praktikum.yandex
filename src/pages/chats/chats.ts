@@ -108,7 +108,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
   onLogout() {
     AuthController.logout()
       .then(() => {
-        store.clearUserInfo(); // Заметаем следы ;)
+        store.clearUserInfo();
         const router = new Router();
         router.go('/');
       })
@@ -116,8 +116,8 @@ export class ChatsPage extends Block<ChatsPageProps> {
   }
 
   messageListToJSX() {
-    if (!this.props.messageList) {
-      return '';
+    if (!this.props.messageList || this.props.messageList.length <= 0) {
+      return '<div class="messages-loader-wrapper"><span class="messages-loader"></span></div>';
     }
 
     return this.props.messageList.map((message: IMessageProps) => `{{{ Message isMyMessage=${message.isMyMessage} messageText="${message.messageText}" }}}`)
@@ -126,7 +126,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
 
   chatListToJSX() {
     if (!this.props.chatList) {
-      return '';
+      return '<div class="chats-loader-wrapper"><span class="chats-loader"></span></div>';
     }
 
     return this.props.chatList
@@ -199,7 +199,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
                         {{{ Button buttonId="button-delete-user" className="profile__btn" text="Исключить" onClick=onDeleteUser }}}
                       ` : ''}
                         ${currentChatTitle ? '{{{ Button className="button_color_red" text="Удалить чат" onClick=onDeleteChat }}}' : ''}
-                        {{{ Button className="button_color_red" text="Выйти" onClick=onLogout}}}
+                        {{{ Button className="sign-out-btn" text="Выйти" onClick=onLogout}}}
                     </div>
                 </div>
                 <div class="chats__dialog">

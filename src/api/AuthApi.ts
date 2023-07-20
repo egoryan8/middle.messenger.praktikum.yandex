@@ -16,7 +16,7 @@ export interface SignInData {
   password: string;
 }
 
-export interface changePasswordData {
+export interface ChangePasswordData {
   oldPassword: string;
   newPassword: string;
 }

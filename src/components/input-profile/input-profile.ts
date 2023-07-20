@@ -12,7 +12,6 @@ interface InputProfileProps {
   inputPlaceholder?: string;
   regexp: string;
   className: string;
-  disabled: boolean;
 }
 
 export class InputProfile extends Block<InputProfileProps> {
@@ -31,7 +30,6 @@ export class InputProfile extends Block<InputProfileProps> {
       inputValue,
       inputPlaceholder,
       regexp,
-      disabled,
     } = this.props;
 
     // language=hbs

@@ -1,3 +1,18 @@
+@keyframes prixClipFix {
+  0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+  25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+  50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+  75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+  100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+
+@keyframes bblFadInOut {
+  0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+  40% { box-shadow: 0 2.5em 0 0 }
+}
+
+
 .chats {
   display: grid;
   width: 100%;
@@ -172,6 +187,15 @@
   padding: 10px 15px;
 }
 
+.sign-out-btn {
+  padding: 0;
+  font-size: 13px;
+  line-height: 100%;
+  background: none;
+  color: $red;
+  text-align: start;
+}
+
 .button-chat-container {
   display: flex;
   flex-direction: column;
@@ -229,4 +253,75 @@
 .profile__btn {
   padding: 10px;
 }
+
+.chats-loader-wrapper,
+.messages-loader-wrapper{
+  width: 100%;
+  display: flex;
+  padding: 50px 0;
+  justify-content: center;
+}
+
+
+.chats-loader {
+  width: 48px;
+  height: 48px;
+  border:10px solid #FFF;
+  border-radius: 50%;
+  position: relative;
+  transform:rotate(45deg);
+  box-sizing: border-box;
+
+  &::before {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    inset:-10px;
+    border-radius: 50%;
+    border: 5px solid $primary;
+    animation: prixClipFix 2s infinite linear;
+  }
+}
+
+.messages-loader-wrapper {
+  height: 100%;
+  align-items: center;
+}
+
+.messages-loader, .messages-loader:before, .messages-loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  animation-fill-mode: both;
+  animation: bblFadInOut 1.8s infinite ease-in-out;
+}
+.messages-loader {
+  color: $primary;
+  font-size: 7px;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+  &:before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+  }
+  &:after {
+    left: 3.5em;
+
+  }
+}
+
+
+
+
+
+
+
 
