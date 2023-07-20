@@ -13,9 +13,6 @@ export class RegisterPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
       onClick: () => this.onSignUp(),
-      events: {
-        submit: (e: Event) => this.goNext(e),
-      },
     });
   }
 

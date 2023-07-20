@@ -65,7 +65,7 @@ export class LoginPage extends Block<{ onClick: Function }> {
     }
 
     if (isAllValid) {
-      location.replace('/pages/messages/index.html');
+      location.replace('/pages/chats/index.html');
     }
   };
 
