@@ -28,6 +28,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
       onAddUser: () => this.addUserToChat(),
       onDeleteUser: () => this.removeUserFromChat(),
       getProfileInfo: () => this.getProfileInfo(),
+      getIsAdmin: () => this.getIsAdmin(),
     });
   }
 
@@ -99,7 +100,6 @@ export class ChatsPage extends Block<ChatsPageProps> {
       regexp: REGEXP_MESSAGE,
     }) as { message: string } | undefined;
     if (data) {
-      console.log(data.message);
       ws.sendMessage(data.message);
       scrollToLastMessage();
     }
@@ -161,13 +161,28 @@ export class ChatsPage extends Block<ChatsPageProps> {
       if (chat) {
         return chat.title;
       }
-    } else {
-      return undefined;
     }
+
+    return undefined;
+  }
+
+  getIsAdmin() {
+    const chatId = store.getState()?.currentChatId;
+    const user = store.getState().currentUser;
+    if (chatId) {
+      const chat = store.getState()
+        ?.chatList
+        .find((item: IChatData) => String(item.id) === chatId);
+
+      return chat.created_by === user.id;
+    }
+
+    return false;
   }
 
   render() {
     const currentChatTitle = this.getChatTitle();
+    const isAdmin = this.getIsAdmin();
     const miniAvatar = this.props.miniAvatar || 'https://cdn1.iconfinder.com/data/icons/ui-5/502/speech-1024.png';
     // language=hbs
 
@@ -194,12 +209,12 @@ export class ChatsPage extends Block<ChatsPageProps> {
                                 <span class="chats__current-name">${currentChatTitle || 'Выберите чат'}</span>
                     ` : ''}
                     <div class="chats__top-buttons">
-                        ${currentChatTitle ? `
+                        ${isAdmin && currentChatTitle ? `
                         {{{ Button buttonId="button-add-user" className="profile__btn" text="Пригласить" onClick=onAddUser }}}
                         {{{ Button buttonId="button-delete-user" className="profile__btn" text="Исключить" onClick=onDeleteUser }}}
+                        {{{ Button className="button_color_red" text="Удалить чат" onClick=onDeleteChat }}}
                       ` : ''}
-                        ${currentChatTitle ? '{{{ Button className="button_color_red" text="Удалить чат" onClick=onDeleteChat }}}' : ''}
-                        {{{ Button className="sign-out-btn" text="Выйти" onClick=onLogout}}}
+<!--                        {{{ Button className="sign-out-btn" text="Выйти" onClick=onLogout}}}-->
                     </div>
                 </div>
                 <div class="chats__dialog">
@@ -216,6 +231,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
                     }}}
                     {{{SendMessageButton onClick=onSendMessage }}}
                 </div>` : ''}
+
             </div>
         </main>;
     `;
