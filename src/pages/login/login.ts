@@ -31,6 +31,7 @@ export class LoginPage extends Block<{ onClick: Function }> {
     const data = validateInputs({ elementId: 'login', regexp: REGEXP_LOGIN }, { elementId: 'password', regexp: REGEXP_PASSWORD });
 
     if (data) {
+      console.log('data: ', data);
       AuthController.signIn(data as SignInData)
         .then(() => {
           console.log('Авторизация выполнена успешно!');

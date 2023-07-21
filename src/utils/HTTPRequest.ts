@@ -44,7 +44,6 @@ export class HTTPTransport {
     return this.request<Response>(this.endpoint + path, {
       method: Method.POST,
       data,
-      // credentials: true,
     });
   }
 
