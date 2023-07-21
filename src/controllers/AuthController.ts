@@ -13,7 +13,7 @@ class AuthController {
   }
 
   async signIn(data: SignInData) {
-    await this.api.signIn(data);
+    await this.api.signIn(data, { cre });
   }
 
   async logout() {

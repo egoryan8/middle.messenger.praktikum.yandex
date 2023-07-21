@@ -34,9 +34,21 @@ export class RegisterPage extends Block<{ onClick: Function }> {
     if (data) {
       AuthController.signUp(data as SignUpData)
         .then(() => new Router().go('/messenger'))
-        .catch((error) => alert(`Ошибка выполнения запроса регистрации! ${error ? error.reason : ''}`));
+        .catch((error) => {
+          if (error.reason === 'User already in system') {
+            const router = new Router();
+            router.go('/messenger');
+          } else alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);
+        });
     }
   };
+
+  componentDidMount() {
+    AuthController.fetchUser().then(() => {
+      const router = new Router();
+      router.go('/messenger');
+    });
+  }
 
   validate() {
     validateInputs(
