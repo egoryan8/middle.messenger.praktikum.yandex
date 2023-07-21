@@ -36,7 +36,7 @@ export default class AuthAPI {
   }
 
   signIn(data: SignInData): Promise<string> {
-    return this.http.post('/signin', data, { cre });
+    return this.http.post('/signin', data);
   }
 
   logout(): Promise<string> {
