@@ -44,8 +44,14 @@ export class DialogItem extends Block<IDialog> {
       // eslint-disable-next-line no-console
       console.log(`Чат ${id}, пользователи: `, chatUsers);
       ws.connect(); // Создаем подключение по Websocket
+      setTimeout(() => {
+        document.getElementById('message')!.focus();
+      }, 500);
     } else {
       scrollToLastMessage();
+      setTimeout(() => {
+        document.getElementById('message')!.focus();
+      }, 500);
     }
   }
 

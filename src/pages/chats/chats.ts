@@ -25,13 +25,16 @@ export class ChatsPage extends Block<ChatsPageProps> {
     super({
       ...props,
       onLogout: () => this.onLogout(),
-      onSendMessage: () => this.onSendMessage(),
+      onSendMessage: (e: Event) => this.onSendMessage(e),
       onCreateChat: () => this.createChat(),
       onDeleteChat: () => this.deleteChat(),
       onAddUser: () => this.addUserToChat(),
       onDeleteUser: () => this.removeUserFromChat(),
       getProfileInfo: () => this.getProfileInfo(),
       getIsAdmin: () => this.getIsAdmin(),
+      events: {
+        submit: (e: Event) => this.onSendMessage(e),
+      },
     });
   }
 
@@ -98,7 +101,8 @@ export class ChatsPage extends Block<ChatsPageProps> {
       .catch((error) => alert(`Ошибка запроса данных пользователя! ${error ? error.reason : ''}`));
   }
 
-  onSendMessage() {
+  onSendMessage(e: Event) {
+    e.preventDefault();
     const data = validateInputs({
       elementId: 'message',
       regexp: REGEXP_MESSAGE,
@@ -106,6 +110,9 @@ export class ChatsPage extends Block<ChatsPageProps> {
     if (data) {
       ws.sendMessage(data.message);
       scrollToLastMessage();
+      setTimeout(() => {
+        document.getElementById('message')!.focus();
+      }, 300);
     }
   }
 
@@ -245,7 +252,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
                 <div class="chats__dialog">
                     ${currentChatTitle ? this.messageListToJSX() : '<div class="chats__pick-dialog"><span class="chats__pick-dialog-text">Выберите чат<span></span></div>'}
                 </div>
-                ${currentChatTitle ? `<div class="chats__handling">
+                ${currentChatTitle ? `<form class="chats__handling">
                     <button class="chats__clip-button"></button>
                     {{{Input
                             class="chats__input-message"
@@ -255,7 +262,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
                             inputName="message"
                     }}}
                     {{{SendMessageButton onClick=onSendMessage }}}
-                </div>` : ''}
+                </form>` : ''}
 
             </div>
         </main>;
