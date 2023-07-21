@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import './index.scss';
-import { IChatData, store } from '../../Store';
+import { IChatData, IUserData, store } from '../../Store';
 import { IMessageProps } from '../../components/message';
 import Router from '../../utils/Router';
 import ChatController from '../../controllers/ChatController';
@@ -10,6 +10,7 @@ import { REGEXP_MESSAGE } from '../../utils/regexps';
 import { scrollToLastMessage } from '../../utils/scrollToLastMessage';
 import { ws } from '../../index';
 import { getRandomColor } from '../../utils/getRandomColor';
+import { log } from 'handlebars';
 
 const arrayOfRandomColors = [...Array(100)].map(getRandomColor);
 
@@ -18,10 +19,13 @@ interface ChatsPageProps {
   messageList?: IMessageProps[];
   miniAvatar?: string;
   onClick: (e: Event) => void;
+  currentUser: IUserData;
 }
 
 export class ChatsPage extends Block<ChatsPageProps> {
   constructor(props: ChatsPageProps) {
+    const state = store.getState();
+    console.log(state.currentUser);
     super({
       ...props,
       onLogout: () => this.onLogout(),
@@ -42,7 +46,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
     const router = new Router();
     ChatController.getChats()
       .then(() => {
-        AuthController.fetchUser();
+        AuthController.fetchUser().then((res) => this.props.currentUser = res);
         store.set('isChatLoading', false);
       })
       .catch(() => {
@@ -141,7 +145,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
 
   chatListToJSX() {
     if (!this.props.chatList) {
-      return '<div class="chats-loader-wrapper"><span class="chats-loader"></span></div>';
+      return '<div class="chats-empty">У вас пока нет чатов</div>';
     }
 
     return this.props.chatList
@@ -201,12 +205,12 @@ export class ChatsPage extends Block<ChatsPageProps> {
   render() {
     const currentChatTitle = this.getChatTitle();
     const isAdmin = this.getIsAdmin();
-    const { user } = this.props;
-    const avatar = store?.getState()?.currentUser?.avatar;
-    const name = store?.getState()?.currentUser?.first_name;
+    const user: IUserData = this.props.currentUser;
+    console.log('user', user);
+    const avatar = user?.avatar;
+    const name = user?.first_name;
     const hostResources = 'https://ya-praktikum.tech/api/v2/resources/';
     const userAvatar = avatar ? `${hostResources}${avatar}` : 'https://racksmetal.ru/assets/images/products/1147/noimg-2-1.jpg';
-    // const userAvatar = store.getState().currentUser.avatar();
     const miniAvatar = this.props.miniAvatar || 'https://cdn1.iconfinder.com/data/icons/ui-5/502/speech-1024.png';
     // language=hbs
 

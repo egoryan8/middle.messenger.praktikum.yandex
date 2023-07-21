@@ -24,6 +24,8 @@ class AuthController {
     const userData = await this.api.read();
 
     store.set('currentUser', userData);
+
+    return userData;
   }
 }
 
