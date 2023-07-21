@@ -9,6 +9,7 @@ const Method = {
 interface Options {
   method: string;
   data?: any;
+  credentials?: boolean
 }
 
 type IData = Record<string, string>;
@@ -43,6 +44,7 @@ export class HTTPTransport {
     return this.request<Response>(this.endpoint + path, {
       method: Method.POST,
       data,
+      // credentials: true,
     });
   }
 
