@@ -1,4 +1,4 @@
-import { IProfileData } from './UserAPI';
+import { IProfileData } from './UserApi';
 import { HTTPTransport } from '../utils/HTTPRequest';
 
 export interface IChatData {

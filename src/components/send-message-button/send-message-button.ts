@@ -23,6 +23,6 @@ export class SendMessageButton extends Block<TSendMessageButton> {
 
   render() {
     // language=hbs
-    return '<button class="chats__send-button"></button>';
+    return '<button type="submit" class="chats__send-button"></button>';
   }
 }

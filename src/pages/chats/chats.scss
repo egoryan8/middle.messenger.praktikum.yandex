@@ -38,10 +38,24 @@
     border-bottom: 1px solid $border;
   }
 
+  &__heading-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__heading-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    object-position: center;
+  }
+
   &__link-to-profile {
-    color: $gray;
     margin-left: auto;
-    margin-bottom: 25px;
+    color: $gray;
     font-size: 12px;
     line-height: 100%;
     display: flex;
@@ -262,24 +276,29 @@
   justify-content: center;
 }
 
+.chats-loader-wrapper {
+  min-height: 100vh;
+  align-items: center;
+}
+
 
 .chats-loader {
-  width: 48px;
-  height: 48px;
-  border:10px solid #FFF;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  position: relative;
-  transform:rotate(45deg);
+  display: inline-block;
+  border-top: 3px solid $primary;
+  border-right: 3px solid transparent;
   box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
 
-  &::before {
-    content: "";
-    position: absolute;
-    box-sizing: border-box;
-    inset:-10px;
-    border-radius: 50%;
-    border: 5px solid $primary;
-    animation: prixClipFix 2s infinite linear;
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

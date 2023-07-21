@@ -56,7 +56,6 @@ export class Profile extends Block<IProfileProps> {
         { elementId: 'phone-profile', regexp: REGEXP_PHONE },
       );
       if (data) {
-        console.log(data);
         UserController.updateProfile(data as IProfileData)
           // eslint-disable-next-line no-alert
           .then(() => alert('Профиль успешно обновлен!'))
@@ -88,7 +87,7 @@ export class Profile extends Block<IProfileProps> {
             {{{ Sidebar }}}
             <div class="profile">
                 <div class="profile__img-wrapper">
-                    {{{ProfileAvatar avatar=${avatar}  }}}
+                    {{{ProfileAvatar avatar=${avatar} isLoading=${false}  }}}
                     <span class="profile__name">${this.props.first_name}</span>
                 </div>
                 <ul class="profile__fields">

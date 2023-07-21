@@ -24,6 +24,7 @@ export interface IUserData {
 interface ILastMessage {
   time: string;
   content: string;
+  user: IUserData;
 }
 
 export interface IChatData {
@@ -40,6 +41,7 @@ interface IStoreData {
   chatList?: IChatData[];
   currentChatId?: string;
   messageList: DialogItemProps[];
+  isChatLoading: boolean;
 }
 
 class Store extends EventBus {
@@ -61,6 +63,7 @@ class Store extends EventBus {
     this.set('chatList', []);
     this.set('currentChatId', '');
     this.set('messageList', []);
+    this.set('isChatLoading', false);
   }
 }
 export const store = new Store();

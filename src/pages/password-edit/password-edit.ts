@@ -33,7 +33,6 @@ export class PasswordEdit extends Block<IPasswordEdit> {
       { elementId: 'newPassword', regexp: REGEXP_PASSWORD },
       { elementId: 'oldPassword', regexp: REGEXP_PASSWORD },
     );
-    console.log(data);
     if (data) {
       UserController.changePassword(data as ChangePasswordData)
         .then(() => alert('Пароль успешно изменен!'))
@@ -54,7 +53,7 @@ export class PasswordEdit extends Block<IPasswordEdit> {
             {{{ Sidebar }}}
             <div class="profile-edit">
                 <div class="profile__img-wrapper">
-                    {{{ProfileAvatar avatar=${avatar}  }}}
+                    {{{ProfileAvatar avatar=${avatar} isLoading=${false}  }}}
                     <span class="profile__name">${this.props.first_name}</span>
                 </div>
                 <ul class="profile-edit__fields">
