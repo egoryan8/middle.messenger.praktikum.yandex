@@ -1,4 +1,4 @@
-import AuthAPI, { SignInData, SignUpData } from '../api/AuthAPI';
+import AuthAPI, { SignInData, SignUpData } from '../api/AuthApi';
 import { store } from '../Store';
 
 class AuthController {
