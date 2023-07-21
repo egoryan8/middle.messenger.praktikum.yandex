@@ -14,7 +14,7 @@ abstract class Block<Props extends {}> {
 
   private _element: HTMLElement | null = null;
 
-  protected props: Record<string, unknown>;
+  protected props: Props;
 
   protected children: Record<string, any>;
 

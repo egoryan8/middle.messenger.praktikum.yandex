@@ -1,7 +1,14 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier-scss"
+  ],
   "rules": {
-    "color-hex-case": "lower"
+    "selector-class-pattern": null,
+    "scss/at-mixin-pattern": null,
+    "scss/dollar-variable-pattern": null,
+    "scss/dollar-variable-empty-line-before": null,
+    "color-function-notation": null
   },
   "ignoreFiles": ["dist/*", "node_modules/*", ".parcel-cache"]
 }

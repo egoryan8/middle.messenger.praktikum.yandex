@@ -7,7 +7,7 @@ const withChats = withStore((state) => ({
   currentChatId: state.currentChatId,
   messageList: state.messageList || [],
   isChatLoading: state.isChatLoading || false,
-  user: state.currentUser,
+  currentUser: state.currentUser,
 }));
 
 export default withChats(ChatsPage);

@@ -1,6 +1,6 @@
-import { store } from '../Store';
 import { scrollToLastMessage } from './scrollToLastMessage';
 import { HTTPTransport } from './HTTPRequest';
+import { store } from '../Store';
 
 export class WS {
   private socket: WebSocket;

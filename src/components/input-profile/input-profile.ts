@@ -35,7 +35,7 @@ export class InputProfile extends Block<InputProfileProps> {
     // language=hbs
     return `
     <li class="profile__field">
-    <label for={{inputName}} class="profile__field__label">{{label}}</label> 
+    <label for={{inputName}} class="profile__field__label">${label}</label> 
    
     {{{ Input inputId="${inputId}"
               inputType="${inputType}"

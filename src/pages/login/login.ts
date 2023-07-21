@@ -38,7 +38,12 @@ export class LoginPage extends Block<{ onClick: Function }> {
           const router = new Router();
           router.go('/messenger');
         })
-        .catch((error) => alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`));
+        .catch((error) => {
+          if (error.reason === 'User already in system') {
+            const router = new Router();
+            router.go('/messenger');
+          } else alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);
+        });
     }
   }
 

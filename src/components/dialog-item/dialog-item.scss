@@ -7,7 +7,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 10%);
   }
 
   &:first-of-type {
@@ -36,6 +36,10 @@
   &__name {
     font-weight: 600;
     font-size: 14px;
+    max-width: 130px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
  &__lastUsername {
@@ -53,8 +57,8 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     align-self: flex-start;
-    display: -webkit-box;
     overflow: hidden;
+    max-width: 130px;
   }
 
   &__info {
