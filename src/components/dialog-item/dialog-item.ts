@@ -1,11 +1,9 @@
-import template from './dialog-item.template';
 import Block from '../../utils/Block';
 import ChatController from '../../controllers/ChatController';
-import { IUserData, store } from '../../Store';
+import { store } from '../../Store';
 import { ws } from '../../index';
 import { scrollToLastMessage } from '../../utils/scrollToLastMessage';
 import { getParentDataSetParam } from '../../utils/getParentDataSetParam';
-import { getRandomColor } from '../../utils/getRandomColor';
 
 export interface DialogItemProps {
   id: string;

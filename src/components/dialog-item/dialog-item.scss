@@ -7,7 +7,7 @@
 
   &:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 10%);
   }
 
   &:first-of-type {
@@ -53,7 +53,7 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     align-self: flex-start;
-    display: -webkit-box;
+    display: box;
     overflow: hidden;
   }
 

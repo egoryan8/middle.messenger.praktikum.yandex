@@ -29,7 +29,7 @@ export class InputWithLabel extends Block<IInputField> {
     // language=hbs
     return `
         <label class="input-with-label">
-            <span class="input-with-label__caption">{{labelText}}</span>
+            <span class="input-with-label__caption">${labelText}</span>
             {{{ Input inputId="${inputId}"
                       inputType="${inputType}"
                       inputName="${inputName}"
