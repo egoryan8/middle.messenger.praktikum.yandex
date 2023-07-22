@@ -74,7 +74,7 @@ export class Profile extends Block<IProfileProps> {
     const firstName = !this.props.first_name ? undefined : `"${this.props.first_name}"`;
     const secondName = !this.props.second_name ? undefined : `"${this.props.second_name}"`;
     const displayName = !this.props.display_name ? undefined : `"${this.props.display_name}"`;
-    const phone = this.props.phone || undefined;
+    const phone = !this.props.phone ? undefined : `"${this.props.phone}"`;
     const avatar = this.props.avatar ? `"${this.props.avatar}"` : undefined;
 
     if (!this.props.id) {

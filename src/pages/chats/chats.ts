@@ -17,7 +17,6 @@ const arrayOfRandomColors = [...Array(100)].map(getRandomColor);
 interface ChatsPageProps {
   chatList?: IChatData[];
   messageList?: IMessageProps[];
-  miniAvatar?: string;
   onClick: (e: Event) => void;
   currentUser: IUserData;
 }
@@ -46,6 +45,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
     const router = new Router();
     ChatController.getChats()
       .then(() => {
+        // eslint-disable-next-line no-return-assign
         AuthController.fetchUser().then((res) => this.props.currentUser = res);
         store.set('isChatLoading', false);
       })
@@ -65,12 +65,25 @@ export class ChatsPage extends Block<ChatsPageProps> {
     }
   }
 
-  removeUserFromChat() {
+  async _wasUserInChat(userId: string, chatId: string) {
+    // eslint-disable-next-line no-return-assign
+    const chatUsers = await ChatController.getChatUsers(chatId);
+
+    return chatUsers.map((i) => i.id).indexOf(+userId) > -1;
+  }
+
+  async removeUserFromChat() {
     const userId = prompt('Введите ID пользователя для удаления из текущего чата');
+    const chatId = store.getState().currentChatId;
     if (userId) {
-      ChatController.removeUserFromChat(store.getState().currentChatId, +userId)
-        .then(() => alert('Пользователь успешно удалён!'))
-        .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+      const wasUserInChat = await this._wasUserInChat(userId, chatId);
+      if (wasUserInChat) {
+        ChatController.removeUserFromChat(chatId, +userId)
+          .then(() => alert('Пользователь успешно удалён!'))
+          .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+      } else {
+        alert('Такого пользователя нет в чате!');
+      }
     } else {
       alert('Поле не должно быть пустым!');
     }
@@ -192,11 +205,10 @@ export class ChatsPage extends Block<ChatsPageProps> {
     const chatId = store.getState()?.currentChatId;
     const user = store.getState().currentUser;
     if (chatId) {
-      const chat = store.getState()
-        ?.chatList
+      const chat = store?.getState()?.chatList
         .find((item: IChatData) => String(item.id) === chatId);
 
-      return chat.created_by === user.id;
+      return chat?.created_by === user.id;
     }
 
     return false;
@@ -206,7 +218,6 @@ export class ChatsPage extends Block<ChatsPageProps> {
     const currentChatTitle = this.getChatTitle();
     const isAdmin = this.getIsAdmin();
     const user: IUserData = this.props.currentUser;
-    console.log('user', user);
     const avatar = user?.avatar;
     const name = user?.first_name;
     const hostResources = 'https://ya-praktikum.tech/api/v2/resources/';

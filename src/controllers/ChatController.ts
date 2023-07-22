@@ -18,7 +18,6 @@ class ChatController {
 
   async getChats() {
     const chatList = await this.api.read();
-
     store.set('chatList', chatList);
   }
 
