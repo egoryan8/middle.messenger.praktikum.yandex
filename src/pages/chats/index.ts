@@ -3,11 +3,9 @@ import { withStore } from '../../Store';
 import { ChatsPage } from './chats';
 
 const withChats = withStore((state) => ({
-  chatList: state.chatList || [],
   currentChatId: state.currentChatId,
+  chatList: state.chatList || [],
   messageList: state.messageList || [],
-  isChatLoading: state.isChatLoading || false,
-  currentUser: state.currentUser,
 }));
 
 export default withChats(ChatsPage);

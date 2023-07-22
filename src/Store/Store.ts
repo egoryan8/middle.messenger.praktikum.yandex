@@ -48,7 +48,7 @@ class Store extends EventBus {
   private state: Indexed = {};
 
   public getState() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return this.state;
   }
