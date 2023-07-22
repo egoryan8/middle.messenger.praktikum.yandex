@@ -11,6 +11,7 @@ import { scrollToLastMessage } from '../../utils/scrollToLastMessage';
 import { ws } from '../../index';
 import { getRandomColor } from '../../utils/getRandomColor';
 import { log } from 'handlebars';
+import UserController from '../../controllers/UserController';
 
 const arrayOfRandomColors = [...Array(100)].map(getRandomColor);
 
@@ -54,48 +55,43 @@ export class ChatsPage extends Block<ChatsPageProps> {
       });
   }
 
-  addUserToChat() {
-    const userId = prompt('Введите ID пользователя для добавления в текущий чат');
-    const currentUserId = this.props.currentUser.id;
-    if (userId) {
-      if (+userId === currentUserId) {
-        alert('Вы итак уже в чате :)');
+  async addUserToChat() {
+    const userLogin = prompt('Введите логин пользователя для добавления в текущий чат');
+    if (userLogin) {
+      const searchedUser = await UserController.getUserByLogin(userLogin);
+      if (searchedUser.length === 0) {
+        alert('Среди доступных для приглашения такого пользователя не нашлось :(');
 
         return;
       }
-      ChatController.addUserToChat(store.getState().currentChatId, +userId)
-        .then(() => alert('Пользователь успешно добавлен!'))
-        .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
-    } else {
-      alert('Поле не должно быть пустым!');
+      const userId = searchedUser[0]?.id;
+      if (userId) {
+        ChatController.addUserToChat(store.getState().currentChatId, +userId)
+          .then(() => alert('Пользователь успешно добавлен!'))
+          .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+      } else {
+        alert('Поле не должно быть пустым!');
+      }
     }
   }
 
-  async _wasUserInChat(userId: string, chatId: string) {
-    // eslint-disable-next-line no-return-assign
+  async _wasUserInChat(userId: number, chatId: string) {
     const chatUsers = await ChatController.getChatUsers(chatId);
 
-    return chatUsers.map((i) => i.id).indexOf(+userId) > -1;
+    return chatUsers.map((i) => i.id).indexOf(userId) > -1;
   }
 
   async removeUserFromChat() {
-    const userId = prompt('Введите ID пользователя для удаления из текущего чата');
+    const userLogin = prompt('Введите логин пользователя для удаления из текущего чата');
     const chatId = store.getState().currentChatId;
-    const currentUserId = this.props.currentUser.id;
-    if (userId && +userId === currentUserId) {
-      const result = window.confirm('Исключив себя вы удалите чат');
-      if (result) {
-        ChatController.deleteChat(store.getState().currentChatId)
-          .then(() => {
-            store.set('messageList', []);
-            ChatController.getChats();
-          })
-          .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
-      }
+    if (userLogin) {
+      const searchedUser = await UserController.getUserByLogin(userLogin);
+      if (searchedUser.length === 0) {
+        alert('Нет доступного для удаления пользователя с таким логином');
 
-      return;
-    }
-    if (userId) {
+        return;
+      }
+      const userId = searchedUser[0]?.id;
       const wasUserInChat = await this._wasUserInChat(userId, chatId);
       if (wasUserInChat) {
         ChatController.removeUserFromChat(chatId, +userId)
@@ -104,8 +100,6 @@ export class ChatsPage extends Block<ChatsPageProps> {
       } else {
         alert('Такого пользователя нет в чате!');
       }
-    } else {
-      alert('Поле не должно быть пустым!');
     }
   }
 

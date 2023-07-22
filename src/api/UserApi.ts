@@ -26,8 +26,8 @@ export default class UserAPI {
     return this.http.put('/profile', profile);
   }
 
-  getUserByLogin(login: string): Promise<IProfileData> {
-    return this.http.get('/search', { login });
+  getUserByLogin(login: string): Promise<IProfileData[]> {
+    return this.http.post('/search', { login });
   }
 
   changePassword(data: ChangePasswordData): Promise<string> {
