@@ -56,7 +56,13 @@ export class ChatsPage extends Block<ChatsPageProps> {
 
   addUserToChat() {
     const userId = prompt('Введите ID пользователя для добавления в текущий чат');
+    const currentUserId = this.props.currentUser.id;
     if (userId) {
+      if (+userId === currentUserId) {
+        alert('Вы итак уже в чате :)');
+
+        return;
+      }
       ChatController.addUserToChat(store.getState().currentChatId, +userId)
         .then(() => alert('Пользователь успешно добавлен!'))
         .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
@@ -75,6 +81,20 @@ export class ChatsPage extends Block<ChatsPageProps> {
   async removeUserFromChat() {
     const userId = prompt('Введите ID пользователя для удаления из текущего чата');
     const chatId = store.getState().currentChatId;
+    const currentUserId = this.props.currentUser.id;
+    if (userId && +userId === currentUserId) {
+      const result = window.confirm('Исключив себя вы удалите чат');
+      if (result) {
+        ChatController.deleteChat(store.getState().currentChatId)
+          .then(() => {
+            store.set('messageList', []);
+            ChatController.getChats();
+          })
+          .catch((error) => alert(`Ошибка выполнения запроса! ${error ? error.reason : ''}`));
+      }
+
+      return;
+    }
     if (userId) {
       const wasUserInChat = await this._wasUserInChat(userId, chatId);
       if (wasUserInChat) {
