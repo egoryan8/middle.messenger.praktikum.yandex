@@ -2,44 +2,51 @@ import Block from '../../utils/Block';
 import template from './login.template';
 import { REGEXP_LOGIN, REGEXP_PASSWORD } from '../../utils/regexps';
 import { validateInputs } from '../../utils/validation';
+import AuthController from '../../controllers/AuthController';
+import Router from '../../utils/Router';
+import ChatController from '../../controllers/ChatController';
+import { SignInData } from '../../api/AuthApi';
+
+import './index.scss';
 
 export class LoginPage extends Block<{ onClick: Function }> {
   constructor() {
     super({
-      // onClick: () => this.validate(),
-      // goNext:
+      onClick: (e: Event) => this.onSignIn(e),
       events: {
-        submit: (e: Event) => this.goNext(e),
+        submit: (e: Event) => this.onSignIn(e),
       },
     });
   }
 
-  goNext = (e: Event) => {
-    console.log('NEXT');
+  componentDidMount() {
+    AuthController.fetchUser().then(() => {
+      const router = new Router();
+      router.go('/messenger');
+    });
+  }
+
+  onSignIn(e: Event) {
     e.preventDefault();
-    console.log(e);
+    const data = validateInputs({ elementId: 'login', regexp: REGEXP_LOGIN }, { elementId: 'password', regexp: REGEXP_PASSWORD });
 
-    const values = Object.fromEntries(new FormData(e.target));
-    console.log(values);
-
-    const validations = {
-      login: (value) => value.length >= 3 && value.length <= 20,
-      password: (value) => value.length >= 3 && value.length <= 40,
-    };
-    let isAllValid = true;
-    for (const name in values) {
-      if (!validations[name](values[name])) {
-        const input = e.target.querySelector(`[name="${name}"]`);
-        input.style.outline = '2px solid red';
-        input.classList.add('error');
-        isAllValid = false;
-      }
+    if (data) {
+      console.log('data: ', data);
+      AuthController.signIn(data as SignInData)
+        .then(() => {
+          console.log('Авторизация выполнена успешно!');
+          ChatController.getChats();
+          const router = new Router();
+          router.go('/messenger');
+        })
+        .catch((error) => {
+          if (error.reason === 'User already in system') {
+            const router = new Router();
+            router.go('/messenger');
+          } else alert(`Ошибка выполнения запроса авторизации! ${error ? error.reason : ''}`);
+        });
     }
-
-    if (isAllValid) {
-      location.replace('/pages/chats/index.html');
-    }
-  };
+  }
 
   validate() {
     validateInputs({ elementId: 'login', regexp: REGEXP_LOGIN }, { elementId: 'password', regexp: REGEXP_PASSWORD });

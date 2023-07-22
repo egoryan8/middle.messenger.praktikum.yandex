@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 export default `
 <div class="profile__wrapper">
-  {{{ Sidebar}}}
+  {{{ Sidebar }}}
   <div class="profile">
     <div class="profile__img-wrapper">
       <div class="profile__img-overlay-wrapper">
@@ -42,8 +43,8 @@ export default `
       </li>
     </ul>
     <div class="profile__links-wrapper">
-      <a href="../profile-edit/index.html" class="profile__link">Изменить данные</a>
-      <a href="../password-edit/index.html" class="profile__link">Изменить пароль</a>
+      <a href="/profile-edit" class="profile__link">Изменить данные</a>
+      <a href="/password-edit" class="profile__link">Изменить пароль</a>
       <button class="profile__sign-out-btn">Выйти</button>
     </div>
   </div>

@@ -1,18 +1,31 @@
 .dialog {
+  border-radius: 10px;
   display: flex;
-  padding: 12px 0;
+  padding: 12px 10px;
   border-top: 1px solid $border;
 
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 10%);
+  }
+
   &:first-of-type {
+    margin-top: 5px;
     border: none;
   }
 
-  &__avatar {
+  &__avatar-mock {
     width: 47px;
     height: 47px;
     border-radius: 50%;
     flex-shrink: 0;
-    background-color: $gray-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: white;
+    text-shadow: 1px 1px 2px $primary;
   }
 
   &__message-wrapper {
@@ -22,11 +35,21 @@
 
   &__name {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
+    max-width: 130px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
+ &__lastUsername {
+   margin-top: 5px;
+   font-weight: 500;
+   font-size: 13px;
+ }
+
   &__message {
-    margin-top: 4px;
+    margin-top: 2px;
     font-size: 12px;
     line-height: 125%;
     color: $gray;
@@ -34,8 +57,8 @@
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     align-self: flex-start;
-    display: -webkit-box;
     overflow: hidden;
+    max-width: 130px;
   }
 
   &__info {

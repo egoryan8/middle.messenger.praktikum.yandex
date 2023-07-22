@@ -2,10 +2,10 @@ import { renderDom } from '../../utils/renderDom';
 import { ErrorPage } from '../../components/error-page';
 import './index.scss';
 
-const NotFoundPage = new ErrorPage({
+export const NotFoundPage = new ErrorPage({
   errorCode: '404',
   message: 'Не туда попали',
-  backLink: '/#',
+  backLink: '/messenger',
 });
 
 renderDom('#app', NotFoundPage);

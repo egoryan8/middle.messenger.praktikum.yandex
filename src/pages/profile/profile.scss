@@ -1,5 +1,23 @@
 @import "../../styles/variables";
 
+@keyframes push {
+  0% {
+    transform: translate(-50% , 100%)  scale(1);
+  }
+
+  15% , 25%{
+    transform: translate(-50% , 50%)  scale(1);
+  }
+
+  50% , 75% {
+    transform: translate(-50%, -30%) scale(0.5);
+  }
+
+  80%,  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
 .profile {
   padding: 60px 0 20px;
 
@@ -10,10 +28,27 @@
     justify-content: center;
   }
 
-  &__img-wrapper {
+  &__img-overlay {
+    width: 130px;
+    height: 130px;
+    cursor: pointer;
+    opacity: 0;
     display: flex;
-    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 50%);
+    border-radius: 50%;
+    justify-content: center;
     align-items: center;
+    font-size: 13px;
+    line-height: 14px;
+    text-align: center;
+    color: white;
+    padding: 30px;
+    transition: opacity 0.3s ease-in;
   }
 
   &__img-overlay-wrapper {
@@ -25,6 +60,12 @@
     }
   }
 
+  &__img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   &__img {
     width: 130px;
     height: 130px;
@@ -32,24 +73,8 @@
     object-fit: cover;
   }
 
-  &__img-overlay {
-    opacity: 0;
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    font-size: 13px;
-    line-height: 14px;
-    text-align: center;
-    color: white;
-    padding: 30px;
-    transition: opacity 0.3s ease-in;
+  &__img-input {
+    display: none;
   }
 
   &__name {
@@ -84,12 +109,21 @@
   &__field__label {
     font-size: 13px;
     line-height: 100%;
+    white-space: nowrap;
   }
 
   &__field__value {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 100%;
     color: $gray;
+    width: inherit;
+    text-align: end;
+    margin-left: 10px;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__links-wrapper {
@@ -104,18 +138,59 @@
     line-height: 100%;
     padding-bottom: 10px;
     border-bottom: 1px solid $border;
-
-    &:first-of-type {
-      margin-top: 0;
-    }
   }
 
   &__sign-out-btn {
+    padding: 0;
     font-size: 13px;
     line-height: 100%;
     margin-top: 10px;
     background: none;
     color: $red;
     text-align: start;
+  }
+}
+
+.loader {
+  width: 154px;
+  height: 154px;
+  position: relative;
+  overflow: hidden;
+}
+
+.loader::before , .loader::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  background: $primary;
+  transform: translate(-50% , 100%)  scale(0);
+  animation: push 2s infinite ease-in;
+}
+
+.loader::after {
+  animation-delay: 1s;
+}
+
+
+.avatar-loader {
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 3px solid $primary;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

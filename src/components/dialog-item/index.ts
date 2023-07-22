@@ -1,1 +1,1 @@
-export { DialogItem } from './dialog-item';
+export { DialogItem, DialogItemProps } from './dialog-item';
