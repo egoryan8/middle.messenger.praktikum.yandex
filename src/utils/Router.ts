@@ -24,7 +24,7 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Block) {
+  public use(pathname: string, block: any) {
     const route = new Route(pathname, block, { rootQuery: '#app' });
 
     this.routes.push(route);

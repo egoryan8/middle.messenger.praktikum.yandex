@@ -13,7 +13,7 @@ export interface IChatData {
 export default class ChatAPI {
   protected http: HTTPTransport;
 
-  protected constructor() {
+  constructor() {
     this.http = new HTTPTransport('/chats');
   }
 

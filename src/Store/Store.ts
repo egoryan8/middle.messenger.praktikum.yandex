@@ -68,11 +68,11 @@ class Store extends EventBus {
 }
 export const store = new Store();
 
-export const withStore = (mapStateToProps: (state: IStoreData) => Record<string, unknown>) => (Component: typeof Block) => {
+export const withStore = (mapStateToProps: (state: Indexed<any>) => Record<string, unknown>) => (Component: typeof Block) => {
   let state: Record<string, unknown>;
 
-  return class extends Component {
-    constructor(props) {
+  return class extends Component<any> {
+    constructor(props: any) {
       state = mapStateToProps(store.getState());
 
       super({ ...props, ...state });

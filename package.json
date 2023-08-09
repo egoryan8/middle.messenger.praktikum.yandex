@@ -3,14 +3,28 @@
   "version": "1.0.0",
   "description": "мессенджер на ванильном TS с собственной реализацией фреймворка",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html --open",
-    "start": "parcel build src/index.html && node server.ts ",
-    "build": "parcel build src/index.html",
+    "start": "webpack serve",
+    "build": "webpack",
+    "test": "cross-env NODE_ENV=test mocha --require test/babel-register.js --require test/mock.js",
     "lint:ts": "eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix",
     "lint:style": "npx stylelint **/*.scss",
     "lint:style:fix": "npx stylelint **/*.scss --fix"
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "npm run lint:ts:fix",
+      "npm run test"
+    ],
+    "*.{less, css}": [
+      "npm run lint:style:fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -29,19 +43,41 @@
     "@parcel/transformer-sass": "2.8.3",
     "@typescript-eslint/eslint-plugin": "5.56.0",
     "@typescript-eslint/parser": "5.56.0",
+    "@babel/register": "7.17.7",
     "eslint": "8.36.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@types/sinon": "^10.0.13",
+    "chai": "^4.3.6",
+    "chai-dom": "^1.11.0",
+    "clean-webpack-plugin": "^4.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "3.3.1",
+    "ts-loader": "^9.2.8",
+    "css-loader": "6.7.1",
+    "sass-loader": "^12.6.0",
+    "husky": "^8.0.3",
+    "jsdom": "19.0.0",
     "parcel": "2.8.3",
     "sass": "1.58.0",
     "stylelint": "14.9.1",
     "typescript": "5.0.2",
     "stylelint-config-prettier-scss": "0.0.1",
-    "stylelint-config-standard-scss": "5.0.0"
+    "stylelint-config-standard-scss": "5.0.0",
+    "regenerator-runtime": "^0.13.9",
+    "mocha": "9.2.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "cross-env": "^7.0.3",
+    "webpack-dev-server": "^4.7.4"
   },
+
   "dependencies": {
     "handlebars": "^4.7.7",
     "express": "4.18.2",
-    "nanoid": "4.0.2"
+    "nanoid": "4.0.2",
+    "sinon": "^15.0.1"
   }
 }

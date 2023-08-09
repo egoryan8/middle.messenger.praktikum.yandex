@@ -18,7 +18,7 @@ export interface ChangePasswordData {
 export default class UserAPI {
   protected http: HTTPTransport;
 
-  protected constructor() {
+  constructor() {
     this.http = new HTTPTransport('/user');
   }
 
