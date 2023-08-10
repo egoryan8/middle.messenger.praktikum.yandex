@@ -1,4 +1,4 @@
-import { HTTPTransport } from '../utils/HTTPRequest';
+import HTTPTransport from '../utils/HTTPRequest';
 
 export interface IProfileData {
   id: number;

@@ -1,8 +1,7 @@
-require.extensions['.less'] = function () {
+require.extensions['.scss'] = function () {
   return null;
 };
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;

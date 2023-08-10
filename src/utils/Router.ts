@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-import Block from './Block';
 import { Route } from './Route';
 
 class Router {
@@ -7,13 +5,15 @@ class Router {
 
   private history: any = window.history;
 
+  // @ts-ignore
   private _currentRoute: Route | null = null;
 
   private static __instance: Router;
 
   constructor() {
+    // eslint-disable-next-line no-underscore-dangle
     if (Router.__instance) {
-      // eslint-disable-next-line no-constructor-return
+      // eslint-disable-next-line no-constructor-return,no-underscore-dangle
       return Router.__instance;
     }
 
@@ -21,6 +21,7 @@ class Router {
     this.history = window.history;
     this._currentRoute = null;
 
+    // eslint-disable-next-line no-underscore-dangle
     Router.__instance = this;
   }
 

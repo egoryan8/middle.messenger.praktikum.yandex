@@ -1,7 +1,5 @@
 // webpack.config.js
-// eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 
@@ -13,11 +11,11 @@ module.exports = {
     filename: 'bundle.js',
   },
   devServer: {
-    port: 3000,
+    port: 9001,
     historyApiFallback: true,
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json', '.hbs', '.scss'],
+    extensions: ['.ts', '.js', '.json', '.hbs', '.less'],
     alias: {
       handlebars: 'handlebars/dist/handlebars.js',
     },

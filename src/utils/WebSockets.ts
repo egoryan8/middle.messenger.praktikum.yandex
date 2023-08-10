@@ -1,5 +1,5 @@
 import { scrollToLastMessage } from './scrollToLastMessage';
-import { HTTPTransport } from './HTTPRequest';
+import HTTPTransport from './HTTPRequest';
 import { store } from '../Store';
 
 export class WS {

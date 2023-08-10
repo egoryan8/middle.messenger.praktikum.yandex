@@ -1,5 +1,5 @@
 import { IProfileData } from './UserApi';
-import { HTTPTransport } from '../utils/HTTPRequest';
+import HTTPTransport from '../utils/HTTPRequest';
 
 export interface IChatData {
   first_name: 'string';

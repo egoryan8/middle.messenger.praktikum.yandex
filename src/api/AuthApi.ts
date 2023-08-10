@@ -1,6 +1,6 @@
 import { IUserData } from '../Store';
 
-import { HTTPTransport } from '../utils/HTTPRequest';
+import HTTPTransport from '../utils/HTTPRequest';
 
 export interface SignUpData {
   first_name: string;
