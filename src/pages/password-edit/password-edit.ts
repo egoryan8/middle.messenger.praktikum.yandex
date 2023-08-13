@@ -10,6 +10,8 @@ import './password-edit.scss';
 
 interface PasswordEditProps {
   avatar?: string;
+  first_name: string;
+  id: string;
 }
 
 interface IPasswordEdit extends PasswordEditProps {

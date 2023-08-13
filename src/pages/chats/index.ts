@@ -8,4 +8,5 @@ const withChats = withStore((state) => ({
   messageList: state.messageList || [],
 }));
 
+// @ts-ignore
 export default withChats(ChatsPage);

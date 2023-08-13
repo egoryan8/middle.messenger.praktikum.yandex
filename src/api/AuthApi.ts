@@ -1,6 +1,6 @@
 import { IUserData } from '../Store';
 
-import { HTTPTransport } from '../utils/HTTPRequest';
+import HTTPTransport from '../utils/HTTPRequest';
 
 export interface SignUpData {
   first_name: string;
@@ -27,7 +27,7 @@ export interface ChangePasswordData {
 export default class AuthAPI {
   protected http: HTTPTransport;
 
-  protected constructor() {
+  constructor() {
     this.http = new HTTPTransport('/auth');
   }
 
