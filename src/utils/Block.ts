@@ -172,7 +172,7 @@ abstract class Block<Props extends {}> {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     const template = Handlebars.compile(templateString);
 
-    fragment.innerHTML = template({ ...context, children: this.children });
+    // fragment.innerHTML = template({ ...context, children: this.children });
     Object.entries(this.children).forEach(([, child]) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 
