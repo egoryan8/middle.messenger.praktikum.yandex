@@ -1,4 +1,4 @@
-import { HTTPTransport } from '../utils/HTTPRequest';
+import HTTPTransport from '../utils/HTTPRequest';
 
 export interface IProfileData {
   id: number;
@@ -18,7 +18,7 @@ export interface ChangePasswordData {
 export default class UserAPI {
   protected http: HTTPTransport;
 
-  protected constructor() {
+  constructor() {
     this.http = new HTTPTransport('/user');
   }
 

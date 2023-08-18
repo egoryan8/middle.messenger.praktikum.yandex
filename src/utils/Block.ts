@@ -57,6 +57,7 @@ abstract class Block<Props extends {}> {
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    // @ts-ignore
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
@@ -75,14 +76,15 @@ abstract class Block<Props extends {}> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate() {
+    if (this.componentDidUpdate()) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: Props, newProps: Props) {
+  // @ts-ignore
+  componentDidUpdate() {
     return true;
   }
 
@@ -143,6 +145,7 @@ abstract class Block<Props extends {}> {
   }
 
   private _addEvents() {
+    // @ts-ignore
     const { events } = this.props as Props;
 
     if (!events) {
@@ -154,6 +157,7 @@ abstract class Block<Props extends {}> {
   }
 
   private _removeEvents() {
+    // @ts-ignore
     const { events } = this.props as Props;
 
     if (!events || !this._element) {

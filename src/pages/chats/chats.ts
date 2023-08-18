@@ -10,7 +10,6 @@ import { REGEXP_MESSAGE } from '../../utils/regexps';
 import { scrollToLastMessage } from '../../utils/scrollToLastMessage';
 import { ws } from '../../index';
 import { getRandomColor } from '../../utils/getRandomColor';
-import { log } from 'handlebars';
 import UserController from '../../controllers/UserController';
 
 const arrayOfRandomColors = [...Array(100)].map(getRandomColor);
@@ -20,6 +19,7 @@ interface ChatsPageProps {
   messageList?: IMessageProps[];
   onClick: (e: Event) => void;
   currentUser: IUserData;
+  miniAvatar: string;
 }
 
 export class ChatsPage extends Block<ChatsPageProps> {
@@ -158,7 +158,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
   }
 
   messageListToJSX() {
-    if (this.props.messageList.length === 0) {
+    if (this.props.messageList?.length === 0) {
       return '<div class="messages-loader-wrapper">Здесь пока ничего нет...</div>';
     }
 
@@ -166,7 +166,7 @@ export class ChatsPage extends Block<ChatsPageProps> {
       return '<div class="messages-loader-wrapper"><span class="messages-loader"></span></div>';
     }
 
-    return this.props.messageList.map((message: IMessageProps) => `{{{ Message isMyMessage=${message.isMyMessage} messageText="${message.messageText}" }}}`)
+    return this?.props?.messageList?.map((message: IMessageProps) => `{{{ Message isMyMessage=${message.isMyMessage} messageText="${message.messageText}" }}}`)
       .join('');
   }
 

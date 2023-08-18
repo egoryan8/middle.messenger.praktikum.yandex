@@ -1,5 +1,5 @@
 import { IProfileData } from './UserApi';
-import { HTTPTransport } from '../utils/HTTPRequest';
+import HTTPTransport from '../utils/HTTPRequest';
 
 export interface IChatData {
   first_name: 'string';
@@ -13,7 +13,7 @@ export interface IChatData {
 export default class ChatAPI {
   protected http: HTTPTransport;
 
-  protected constructor() {
+  constructor() {
     this.http = new HTTPTransport('/chats');
   }
 

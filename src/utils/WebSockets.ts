@@ -1,8 +1,9 @@
 import { scrollToLastMessage } from './scrollToLastMessage';
-import { HTTPTransport } from './HTTPRequest';
+import HTTPTransport from './HTTPRequest';
 import { store } from '../Store';
 
 export class WS {
+  // @ts-ignore
   private socket: WebSocket;
 
   private host = 'ya-praktikum.tech';
@@ -13,6 +14,7 @@ export class WS {
 
   private timerId?: NodeJS.Timer;
 
+  // @ts-ignore
   private isConnectionOK: boolean;
 
   private onOpenConnection() {
@@ -129,6 +131,7 @@ export class WS {
           this.socket.removeEventListener('open', this.onOpenConnection.bind(this));
           this.socket.removeEventListener('close', this.onCloseConnection.bind(this));
           this.socket.removeEventListener('message', this.onReceiveMessage.bind(this));
+          // @ts-ignore
           this.socket.removeEventListener('error', this.onError.bind(this));
           this.socket.close(1000, `Close previous chat connection with chat ${this.chatId}`);
         }
@@ -138,6 +141,7 @@ export class WS {
         this.socket.addEventListener('open', this.onOpenConnection.bind(this));
         this.socket.addEventListener('close', this.onCloseConnection.bind(this));
         this.socket.addEventListener('message', this.onReceiveMessage.bind(this));
+        // @ts-ignore
         this.socket.addEventListener('error', this.onError.bind(this));
         this.chatId = chatId;
         this.userId = userId;
