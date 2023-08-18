@@ -5,7 +5,7 @@ export class Route {
 
   private _blockClass: typeof Block;
 
-  private _block: Block | null;
+  private _block: Block<any> | null;
 
   private _props: Record<string, unknown>;
 
@@ -27,10 +27,10 @@ export class Route {
     return pathname === this._pathname;
   }
 
-  private _render(query, block) {
+  private _render(query: string, block: any) {
     const root = document.querySelector(query);
     // root.innerHTML = '';
-    root.append(block.getContent());
+    root?.append(block.getContent());
     block.dispatchComponentDidMount();
 
     return root;
@@ -38,12 +38,14 @@ export class Route {
 
   render() {
     if (!this._block) {
+      // @ts-ignore
       this._block = new this._blockClass();
+      // @ts-ignore
       this._render(this._props.rootQuery, this._block);
 
       return;
     }
-
+    // @ts-ignore
     this._render(this._props.rootQuery, this._block);
   }
 }
